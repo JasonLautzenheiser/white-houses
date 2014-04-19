@@ -19,6 +19,9 @@ Christopher is a male person.
 Jenny is a female person.
 Jessica is a female person.
 
+The thief is a male person.
+The troll is an animal.
+
 Chapter - Underlying
 
 Underlying relates various things to one thing.  The verb to underlie (he underlies, they underlie, he underlaid, it is underlaid, he is underlying) implies the underlying relation.  The verb to be under implies the underlying relation.  The verb to be beneath implies the underlying relation.
