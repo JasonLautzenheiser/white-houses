@@ -1,6 +1,13 @@
-"White Houses" by Jason Lautzenheiser
+"White Houses" by Mr Stamp
 
 Include Locksmith by Emily Short.
+Include Threaded Conversation by Chris Conley.
+
+
+Include Conversation Builder by Chris Conley.
+
+
+
 
 The release number is 1.
 The story creation year is 2014.
@@ -10,14 +17,20 @@ Part - Setup
 A room can be indoors or outdoors. A room is usually indoors. 
 A thing can be flaming or non-flaming.  A thing is usually non-flaming.  
 A thing can be flammable or inflammable.  A thing is usually inflammable.
+
+
+
 The player is a female.  
 
 Chapter - Characters
 
-Marcus is a male person.
-Christopher is a male person.
-Jenny is a female person.
-Jessica is a female person.
+Marcus is a male person.  The description of marcus is "Marcus is very athletic.  To be honest, you've had a crush on him since they fifth grade.   His blond curly hair hangs down near his shoulders and his well built physique is something to behold.  He has a fun loving personallity and he's always been friendly with you, but he never returned your affections, at least as you've noticed."
+
+Christopher is a male person.  The description of Christopher is "Christopher comes from a wealthy family and dresses as if he does.  In fact, he's said that the land this house sits on has belonged to his family stretching back centuries."
+
+Jenny is a female person.  The description of Jenny is "Jenny is a beautiful young woman with a vibrant personallity.  She is slim and athletic which comes from her years of dance.  She has always dreamed of becoming a ballerina and you suspect that with her long slender figure she would make a great one.   Her and Christopher have been an item since freshman year, though you suspect that Jenny truly believes she's in love, Christopher sees her as a trophy."
+
+Jessica is a female person.  The description of Jessica is "Jessica, while very pretty, her beauty is dampened by being a bitch.  She has short dark hair and likes to wear short skirts and low-cut shirts showing off her ample assests.  She likes to flaunt herself in front of guys and Marcus has been her primary target lately."
 
 The thief is a male person.
 The troll is an animal.
@@ -111,7 +124,7 @@ The Living Room is an indoors room.
 
 Section - Kitchen
 
-The Kitchen is an indoors room.  The kitchen is east of the Living Room.  "You are in the kitchen of the white house.  A table sits in the middle of the room.  A passage heads to the west and a staircase leads up into darkness.  A chimney leads down and to the east is a small window which is [if the window is open]open. [otherwise]closed.  A countertop lies along the north wall and under the window is a wash basin."
+The Kitchen is an indoors room.  The kitchen is east of the Living Room.  The description of the kitchen is "You are in the kitchen of the white house.  A table sits in the middle of the room.  A passage heads to the west and a staircase leads up into darkness.  A chimney leads down and to the east is a small window which is [if the window is open]open. [otherwise]closed.  A countertop lies along the north wall and under the window is a wash basin."
 
 The wash basin is a unopenable container.  The wash basin is open.   The wash basin is scenery in the kitchen.  The description of the wash basin is "A white poreclin wash basin sits along the wall under the window.  Rust stains are splattered around the drain where water has dripped for some time."
 
@@ -123,8 +136,32 @@ Section - Attic
 
 The Attic is an indoors room.  The attic is up from the kitchen.
 
+Part - Below the White House
+
 Section - Cellar
 
 The Cellar is an indoors room.  The cellar is down from the living room.
 
-Part - Below the White House
+Part - Scenes
+
+Chapter - Arrival
+
+Arrival is a scene.  Arrival begins when play begins.
+Arrival ends when number of visited indoors room is 2.
+
+Chapter - Meet Others
+
+Meet Others is a scene.  Meet Others begins when Arrival ends.  
+
+When Meet Others begins:
+	let arrival_from_attic be whether or not the location is the kitchen;
+	say "Startling you out of your thoughts, your friends arrive [if arrival_from_attic is true]from the steps that looks to lead up to the attic. [otherwise]from the doorway that leads down into darkness.[paragraph break]";
+	say "'Vanessa, you're late.  This house is a great hideout, we[']ll be able to hang her for days without anyone finding us.', Jenny says as she comes up to you and gives you a hug.";
+	now marcus is in the location;
+	now jessica is in the location;
+	now christopher is in the location;
+	now jenny is in the location.
+
+Chapter  - Exploration
+
+Exploration is a scene.  Exploration begins when Meet Others ends.
