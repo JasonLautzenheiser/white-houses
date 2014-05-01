@@ -6,6 +6,10 @@ Include Conversation Responses by Eric Eve.
 Include Conversation Suggestions by Eric Eve.
 Include Complex Listing by Emily Short.
 Include Simple Followers by Emily Short.
+Include Exit Lister by Eric Eve.
+
+
+
 
 The release number is 1.
 The story creation year is 2014.
@@ -22,6 +26,14 @@ The player is a female.
 The player has a number called noises_heard.  The noises_heard of the player is usually 0.
 The hitpoints of the player is 6.
 
+When play begins:
+	say "Jenny called you late and ask to meet you out here in the middle of nowhere.  You've never been this far in the forest before and you never knew this white house was out here.  She said she had something important to tell you and she never joked about those kinds of things so you felt it must be important...so you came.....against your best judgement, but you've always been a good friend.....you just hope you don't regret it."
+
+Understand "about" as abouting.
+Abouting is an action out of world.
+Carry out abouting:
+	say "White Houses is a Shufflecomp 2014 entry.  It is very loosly based on the song 'White Houses' by Vanessa Carlton.  I really mean very loosly, in fact little from the song was used for inspiration other than the title and some NPC information.[paragraph break]This is an early Alpha version released to meet the deadline for entry and in dire need of further testing.  There are plenty of items I would like to implement and as you move through the game, you can probably guess at some of the items / actions that I'd still like to implement.[paragraph break]I do appreciate you taking a look and any feedback at this point can be directed to me (if you are playing this at this point, you and I have already talked so you'll know how to get in touch with me."
+	
 Chapter - Kinds
 
 Section - Secret Door
@@ -61,24 +73,39 @@ Understand "herself/Jen" as Jenny.
 The thief is a male person.
 
 The troll is an person.  Understand "Marcus" as troll.  The description of the troll is "[if the troll is conscious]A nasty looking man, more of a troll really than the man he once was.  He carries with him a large bloody axe.[otherwise]Even though the troll lies unsconscious, he is still pretty nasty looking and his axe looks pretty deadly.[end if]".
+
 The hitpoints of the troll is 10.
+The troll has a number called attack-count.  The attack-count of the troll is 0.
 
 instead of attacking the troll:
+	now the attack-count of the troll is 1;
 	if the player is carrying the sword:
-		if a random chance of 1 in 4 succeeds:
-			say "You swing the sword at the troll rather clumsily, but you manage to hit him across the forehead before he splits you with his axe";
+		if a random chance of 1 in 2 succeeds:
+			say "You swing the sword at the trollish creature rather clumsily, but you still manage to hit him [location-of-hit] before he manages to get his axe up to deflect your swing";
 			if a random chance of 1 in 6 succeeds:
 				say "....and he falls unconscious to the ground.";
 				now the troll is unconscious;
 			otherwise:
+				say ".  ";
 				let hitvalue be a random number between 1 and 5;
 				now the hitpoints of the troll are the hitpoints of the troll minus hitvalue;
+				if the hitpoints of the troll are greater than 0:
+					if the hitpoints of the troll are greater than 8:
+						say "He glances down at his wound and then looks back at you with a small chuckle.";
+					else if hitpoints of the troll are greater than 5:
+						say "The blood is starting to drip around him on the floor and he staggers slightly.";
+					else if the hitpoints of the troll are greater than 2:
+						say "He looks very weak now.";
+				otherwise:
+					say "He slowly sinks to his knees and then plops over on his back unconscious.";
 		otherwise:
 			say "You swing wildly, completely missing the trollish man.";
 	otherwise:
 		say "You [one of]swing wildly[or]kick the troll[or]spit in his general direction[then purely at random] without much effect."
 		
-
+to say location-of-hit:
+	say "[one of]in the leg[or]across the forehead[or]on the arm[or]in the crotch[or]on the knee[or]under the chin[purely at random]".
+	
 before taking the troll:
 	if the troll is unconscious:
 		say "He is much too bulky of a creature for you too move." instead.
@@ -162,12 +189,12 @@ Chapter - Rooms
 
 Section - West of House
 
-A room called west-house is a room.  "You arrive late to the party, but you approach the white house with some trepedation.  The others have already arrived, or at least someone appears to have entered the house as their is a glow coming from the house."
+A room called west-house is a room.  "You are standing in an open field west of the white house."
 
 west-house is in the outdoors.  The printed name of west-house is "West of House".
 
 The small mailbox is a container in west-house.  The mailbox is fixed in place, closed, and openable.
-Understand "box" and "mail box" and "mail-box" as the mailbox.
+Understand "box" and "mail box" and "mail-box" as the mailbox.  The description of mailbox is "The small mailbox is [if mailbox is open]open[otherwise]closed[end if]."
 
 A fixed in place supporter called a rubber welcome mat is in west-house.  "A rubber mat saying 'Welcome to' lies by the door.". The description of the mat is "The mat says 'Welcome to' in bold letters and below that are some faded letters that you can hardly make out."
 
@@ -195,8 +222,12 @@ A room called north-house is northeast of west-house.  "You are facing the north
 north-house is in the outdoors.  The printed name of north-house is "North of House".
 
 The north window is scenery in north-house.  The description of north window is "The window is too dusty to see anything inside."
+
 Instead of opening the north window:
 	say "You try to open the window, but it doesn't budge."
+	
+Instead of looking in window:
+	say "The window is too dusty to see anything inside."
 
 Section - South of House
 
@@ -205,12 +236,18 @@ south-house is in the outdoors.  The printed name of south-house is "South of Ho
 The south window is scenery in south-house.  The description of south window is "The window is too dusty to see anything inside."
 Instead of opening the south window:
 	say "You try to open the window, but it doesn't budge."
+Instead of looking in window:
+	say "The window is too dusty to see anything inside."
+
 	
 Section - Behind House
 
 A room called behind-house is northeast of south-house.  behind-house is southeast of north-house.  "You are behind the white house.  In one corner is a window that is [if the entry window is closed]slightly ajar.  [otherwise]open.".
 
 The printed name of behind-house is "Behind the House".
+
+Instead of looking in window:
+	say "The window is too dusty to see anything inside."
 
 behind-house is in the outdoors.
 
@@ -246,11 +283,14 @@ Down from the living room is a secret door called the trap door.
 To say status of the trap door:
 	say "[if the trap door is open]an open[otherwise]a closed".
 	
-The hooks are a supporter in the living room.  The hooks are scenery.  "There are hooks above the glass case attached to the wall."
+The hooks are a supporter in the living room.  The hooks are scenery.  "There are hooks above the glass case attached to the wall."  Understand "hook" as hooks.
+
+Understand "hang [something preferably held] on [something]" as putting it on.
 
 A battery-powered brass lantern is on the hooks.  "A battery powered brass lantern is hanging from one of the hooks on the wall."
 
 An oriental rug is here.  "In the center of the room is [if the trap door is not revealed]a large oriental rug.[otherwise][status of the trap door] trap door."  Understand "carpet" as rug.
+The rug can be IMoved or NotMoved.  The rug is NotMoved.
 
 Check looking under the rug: 
 	now the trap door is revealed;
@@ -267,14 +307,15 @@ Before pushing or pulling the rug:
 		if jenny is in the location:
 			say "'Jenny, help me move this rug.'[paragraph break]The two of you reach down and with great effort, move the rug to one side of the room.  With the rug moved, the dusty cover of a closed trap door is revealed.";
 			now the trap door is revealed;
+			now the rug is IMoved;
 			stop the action;
 		otherwise:
 			say "You strain to move the rug, but it is much too heavy for you to move." instead;
 			stop the action.
 		
 Before opening the trap door:
-	if the rug had been moved:
-		say "You can't open the trapdoor with the rug on top of it."
+	if the rug is NotMoved:
+		say "You can't open the trapdoor with the rug on top of it." instead;
 	
 After opening the trap door when the player is in the living room:
 	say "The trap door opens to reveal an ancient staircase descending into darkness."
@@ -284,7 +325,7 @@ After pushing or pulling the rug:
 		say "Having already moved the carpet , you find it impossible to move it again."
 
 After going through the trap door: 
-	say "You descend down the stairs into the dark cellar.";
+	say "You descend down the stairs into the dark cellar.[paragraph break]";
 	shut the player in;
 	now jenny is in the cellar.
 	
@@ -307,7 +348,7 @@ The Kitchen is a room.  The kitchen is east of the Living Room.  The description
 
 The kitchen is in the indoors.
 
-The wash basin is a unopenable container.  The wash basin is open.   The wash basin is scenery in the kitchen.  The description of the wash basin is "A white poreclin wash basin sits along the wall under the window.  Rust stains are splattered around the drain where water has dripped for some time."
+The wash basin is a unopenable container.  The wash basin is open.   The wash basin is scenery in the kitchen.  The description of the wash basin is "A white porcelain wash basin sits along the wall under the window.  Rust stains are splattered around the drain where water has dripped for some time."
 
 The glass bottle is a closed openable transparent container.  The bottle is in the basin.
 
@@ -330,7 +371,7 @@ Instead of entering the atticstairs while arrival is happening:
 	
 Section - Attic
 
-The Attic is a room.  The attic is up from the atticstairs.  The description of attic is "The dimly lit attic is empty except for  plenty of cobwebs."
+The Attic is a room.  The attic is up from the atticstairs.  The description of attic is "The dimly lit attic is empty except for  plenty of cobwebs." 
 The attic is in the indoors.
 
 Part - Below the White House
@@ -358,7 +399,7 @@ Understand "mattress/bed" as cot.
 
 to say finding shirt:
 	if first_time of the torn shirt is false:
-		say "You approach the cot to take a look when Jenny pushes past you and grabs up a flannel shirt that was laying on top.[paragraph break]'This is shirt, he was wearing this the day he disappeared', Jenny cries softly as she holds the shirt close.  'He was here, but look how it's torn and covered in blood.  He must be in trouble.'  She quickly drops the shirt back on the cot and runs to the north.[paragraph break]";
+		say "You approach the cot to take a look when Jenny pushes past you and grabs up a flannel shirt that was laying on top.[paragraph break]'This is shirt, he was wearing this the day he disappeared', Jenny cries softly as she holds the shirt close.  'He was here, but look how it's torn and covered in blood.  He must be in trouble.'  She quickly drops the shirt back on the cot and begins to cry.[paragraph break]";
 		now the first_time of the torn shirt is true;
 	otherwise:
 		say "This torn shirt apparently belonged to Marcus.  The shirt is torn almost to threads as if something was bursting out from the inside.";
@@ -429,6 +470,31 @@ Chapter - The Chase
 Chase is a scene.  Chase begins when exploration ends.  Chase ends when the player carries the sword.
 When chase begins:
 	now jenny is shadowing the player.
+
+Chapter - Attack
+
+Attack-troll is a scene.  Attack-troll begins when the attack-count of the troll is greater than 0.  Attack-troll ends when the troll is unconscious.
+
+Every turn during attack-troll:
+	if troll is in the location:
+		say "He slowly brings his axe up and swings it at you.[paragraph break]";
+		if a random chance of 1 in 4 succeeds:
+			say "You aren't quick enough and his axe [hit-me].";
+			let hitvalue be a random number between 1 and 2;
+			now the hitpoints of the player are the hitpoints of the player minus hitvalue;
+			if the hitpoints of the player are greater than 0:
+				if the hitpoints of the player are greater than 4:
+					say "You stagger back from the wound and begin looking for a way out.  Finding none, you have no choice but to fight.";
+				else if hitpoints of the player are greater than 2:
+					say "Your wounds are getting pretty severe, you're not sure how much longer you will last.";
+			otherwise:
+				say "Darkness begins to cloud your eyes.  As you sink to your knees you see the troll-man raise his axe one more time......[paragraph break]**** You have died ****[paragraph break]Well why not, you deserve another chance,  I'll fix you up the best I can.";
+				now the player is in west-house;
+		otherwise:
+			say "Luckily you are quick enough to evade his swing.".
+			
+To say hit-me:
+	say "[one of]slices your cheek open[or]takes a chunk of skin from your arm[or]nearly removes your right ear[or]slices open your right breast[purely at random]".
 	
 Chapter - Finale
 
