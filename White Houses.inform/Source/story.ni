@@ -42,6 +42,10 @@ Understand "chomp"  as a mistake("That's just silly.").
 understand "back" and "go back" as a mistake("You vaguely remember some saying about a plow on your back and some kingdom....or something like that.").
 Understand "zork"  as a mistake("Hahaha....you wish.").
 
+Chapter - Actions
+
+Understand "read [something]" as reading. Reading is an action applying to one thing, requiring light.
+
 Chapter - Kinds
 
 Section - Secret Door
@@ -76,6 +80,12 @@ Jenny is a female person.  The description of Jenny is "Jenny is a beautiful you
 before taking the jenny:
 	if jenny is unconscious:
 		say "Jenny is not too large, but there is no way you'll be able to carry her.   You decide to just go for help." instead.
+
+before giving something to jenny while jenny is unconscious:
+	if the player is carrying the noun:
+		say "You try handing [the noun] to Jenny, but seeing that she is unconscious, she doesn't take it." instead;
+	otherwise:
+		say "You are not carrying [the noun], so giving it to Jenny doesn't seem like an option."
 
 The ask-suggestions are {self-suggestion, adventure, house}.
 Understand "herself/Jen" as Jenny.
@@ -132,15 +142,18 @@ before throwing something at the troll:
 		say "[The noun] bounces off the trolls rather large midsection and falls to the ground.";
 		now the noun is in the location instead;
 	otherwise:
-		say "The troll, who is surprisingly quite coordinated, catches [the noun] " instead;
+		say "The troll, who is surprisingly quite coordinated, catches [the noun] ";
 		if the noun is a weapon:
 			say " and throws it back.  Fortunately, the troll has rather poor control, and [the noun] falls to the ground.  He doesn't look too pleased.";
 			move the noun to the location instead;
 		otherwise:
-			say " and not being rather discriminating, eats it in whole.";
+			say "and not being rather discriminating, eats it whole.";
 			remove the noun from play instead.
 
-
+Before giving something to the troll:
+	say "Not wanting to get too close to him, you toss [the noun] at the troll.";
+	try throwing the noun at the troll instead.
+	
 Section - Conversation
 
 Rule for printing the name of something (called item) when listing suggested topics:
@@ -230,6 +243,13 @@ west-house is in the outdoors.  The printed name of west-house is "West of House
 
 The small mailbox is a container in west-house.  The mailbox is fixed in place, closed, and openable.
 Understand "box" and "mail box" and "mail-box" as the mailbox.  The description of mailbox is "The small mailbox is [if mailbox is open]open[otherwise]closed[end if]."
+
+The pamphlet is in the mailbox.  The description of pamphlet is "It's a copy of a newsletter called 'The Status Line', whatever that is.  [paragraph break]You scan the newsletter, but none of it really makes sense.  What is a [random-infocom-term] anyway?".
+
+To say  random-infocom-term:
+	say "[one of]fooblitzky[or]babel fish[or]grue[or]zorkmid[or]feelie[or]implementor[or]lebling[or]invisiclue[then at random]".
+	
+	
 
 A fixed in place supporter called a rubber welcome mat is in west-house.  "A rubber mat saying 'Welcome to' lies by the door.". The description of the mat is "The mat says 'Welcome to' in bold letters and below that are some faded letters that you can hardly make out."
 
@@ -453,6 +473,9 @@ After examining the cot for the first time:
 The torn shirt is on the cot.  The description of torn shirt is "[finding shirt]".
 The torn shirt has a truth state called first_time.  The first_time of the torn shirt is false.
 
+Instead of wearing the shirt:
+	say "It's pretty bloody and not much more than rags now."
+
 Section - East of Chasm
 
 Chasm Room is a room.  The printed name of Chasm Room is "East of Chasm".  The chasm room is in the dungeon.  The chasm room is south of cellar.  The description of chasm room is "You are on the east end of a wide chasm.  Looking down you can't make out the bottom in the dim light.  A narrow passage heads north through which you could crawl and the path you are on continues to the east."
@@ -465,9 +488,9 @@ before going down in the chasm room:
 	
 Section - Gallery
 
-Gallery is a room.  The gallery is east of the chasm room.  The gallery is in the dungeon.  The description of gallery is "You are in a small room.  On the east wall is hanging a grand painting.   Their is a doorway to the north and a pathway heads west."
+Gallery is a room.  The gallery is east of the chasm room.  The gallery is in the dungeon.  The description of gallery is "You are in a small room.  Their is a doorway to the north and a pathway heads west."
 
-The painting is a thing.  The painting is in the gallery.  the painting is undescribed.  The description of the painting is "Despite being a large and colorful painting, there is surprisingly nothing special about it."
+The painting is a thing.  The painting is in the gallery.   The initial appearance of the painting is "There is a grand painting hanging on the east wall."The description of the painting is "Despite being a large and colorful painting, there is surprisingly nothing special about it."
 
 Section - Studio
 
