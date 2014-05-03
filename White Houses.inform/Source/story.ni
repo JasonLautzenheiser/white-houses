@@ -281,9 +281,12 @@ The north window is scenery in north-house.  The description of north window is 
 
 Instead of opening or pulling or pushing the north window:
 	say "You try to open the window, but it doesn't budge."
-	
-Instead of looking in window:
-	say "The window is too dusty to see anything inside."
+
+Instead of searching a window:
+	try examining the window.
+
+[Instead of looking in window:
+	say "The window is too dusty to see anything inside."]
 
 Section - South of House
 
@@ -292,9 +295,8 @@ south-house is in the outdoors.  The printed name of south-house is "South of Ho
 The south window is scenery in south-house.  The description of south window is "The window is too dusty to see anything inside."
 Instead of opening or pulling or pushing the south window:
 	say "You try to open the window, but it doesn't budge."
-Instead of looking in window:
-	say "The window is too dusty to see anything inside."
-
+Instead of searching a window:
+	try examining the window.
 	
 Section - Behind House
 
@@ -302,25 +304,27 @@ A room called behind-house is northeast of south-house.  behind-house is southea
 
 The printed name of behind-house is "Behind the House".
 
-Instead of looking in window:
-	say "The window is too dusty to see anything inside."
-
 behind-house is in the outdoors.
 
-The entry window is a door.  The entry window is west of behind-house and east of Kitchen.  The entry window is closed and openable.  The entry window is scenery.  The description of entry window is "The window is [if the entry window is closed]slightly ajar, but not enough the squeeze through. [otherwise]open."
-Check climbing the window: try entering the noun instead.
-Check going inside while in behind-house: try entering the window instead.  Check exiting while in Kitchen: try entering the window instead.
+The entry window is a door.  The entry window is west of behind-house and east of Kitchen.  The entry window is closed and openable.  The entry window is scenery.  The description of entry window is "The window is [if the entry window is closed]slightly ajar, but not enough the squeeze through. [otherwise]open."  The entry window is not apparent.
 
-before opening or pulling or pushing the window:  
-	now the window is open;
+Check climbing the entry window: try entering the noun instead.
+Check going inside while in behind-house: try entering the entry window instead.  Check exiting while in Kitchen: try entering the entry window instead.
+
+Instead of searching the  entry window:
+	say "The window is too dusty to see anything through it."
+
+before opening or pulling or pushing the entry window:  
+	now the entry window is open;
+	now the entry window is apparent;
 	say "You manage to open the window just enough to allow entry." instead.
 
-Report closing the window:  
-	now the window is closed;
+Report closing the entry window:  
+	now the entry window is closed;
 	say "The window closes." instead.
 
-Before entering the window: 
-	if the window is closed:
+Before entering the entry window: 
+	if the entry window is closed:
 		say "The window is not open far enough to squeeze through." instead.
 
 Section - Misc
@@ -339,7 +343,6 @@ The Living Room is a room.  The living room is in the indoors.  The description 
 
 Down from the living room is a secret door called the trap door.  The trap door is not apparent.  
 Does the player mean doing something with the trap door when the trap door is not apparent: it is very unlikely.
-
 
 To say status of the trap door:
 	say "[if the trap door is open]an open[otherwise]a closed".
