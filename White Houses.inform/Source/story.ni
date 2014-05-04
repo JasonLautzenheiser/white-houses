@@ -168,7 +168,11 @@ dreams are a familiar subject.  Understand "dream" as dreams.
 before saying hello to Jenny while jenny is unconscious:
 	say "You yell at her to try and wake her up, but there is no response." instead.
 	
-
+[before saying hello to jenny  when the greeting type is implicit for the first time:
+	say "Hey Jenny.";
+	now jenny is the interlocutor;
+	try listing suggested topics instead.]
+	
 After saying hello to Jenny for the first time:
 	if exploration is happening:
 		say "'Jenny, what are we doing out here?'[paragraph break]Jenny looks at you strangely, then smiles and twirls around.  'I thought it would be fun to explore this old place.  Don[']t you just love an adventure?'".
@@ -249,8 +253,6 @@ The pamphlet is in the mailbox.  The description of pamphlet is "It's a copy of 
 To say  random-infocom-term:
 	say "[one of]fooblitzky[or]babel fish[or]grue[or]zorkmid[or]feelie[or]implementor[or]lebling[or]invisiclue[then at random]".
 	
-	
-
 A fixed in place supporter called a rubber welcome mat is in west-house.  "A rubber mat saying 'Welcome to' lies by the door.". The description of the mat is "The mat says 'Welcome to' in bold letters and below that are some faded letters that you can hardly make out."
 
 Mat under is a truth state that varies.  Mat under is usually false.
@@ -285,6 +287,9 @@ Instead of opening or pulling or pushing the north window:
 Instead of searching a window:
 	try examining the window.
 
+Instead of attacking the window:
+	say "You don't feel right breaking the window of someones house."
+	
 [Instead of looking in window:
 	say "The window is too dusty to see anything inside."]
 
@@ -292,11 +297,17 @@ Section - South of House
 
 A room called south-house is southeast of west-house. "You are facing the south side of the white house.  There is a window here.".
 south-house is in the outdoors.  The printed name of south-house is "South of House".
+
 The south window is scenery in south-house.  The description of south window is "The window is too dusty to see anything inside."
+
 Instead of opening or pulling or pushing the south window:
 	say "You try to open the window, but it doesn't budge."
+
 Instead of searching a window:
 	try examining the window.
+
+Instead of attacking the window:
+	say "You don't feel right breaking the window of someones house."
 	
 Section - Behind House
 
@@ -326,6 +337,9 @@ Report closing the entry window:
 Before entering the entry window: 
 	if the entry window is closed:
 		say "The window is not open far enough to squeeze through." instead.
+
+Instead of attacking the window:
+	say "You don't feel right breaking the window of someones house.  Besides [if the entry window is closed]this window looks like it can be open[otherwise]this window is already open[end if]."
 
 Section - Misc
 
@@ -410,15 +424,23 @@ Instead of taking the trophy case:
 
 Section - Kitchen
 
-The Kitchen is a room.  The kitchen is east of the Living Room.  The description of the kitchen is "You are in the kitchen of the white house.  A table sits in the middle of the room.  A passage heads to the west and a staircase leads up into darkness.  A chimney leads down and to the east is a small window.  A countertop lies along the north wall and under the window is a wash basin."
+The Kitchen is a room.  The kitchen is east of the Living Room.  The description of the kitchen is "You are in the kitchen of the white house.  A [table] sits in the middle of the room.  A doorway leads to the west and a staircase heads up into darkness.  A [chimney] leads down and to the east is a small window.  A [countertop] lies along the north wall and under the window is a [wash basin]."
 
 The kitchen is in the indoors.
+
+The table is a supporter in the kitchen.   The table is scenery. The description of table is "A small well worn whitewashed wooden table."
 
 The wash basin is a unopenable container.  The wash basin is open.   The wash basin is scenery in the kitchen.  The description of the wash basin is "A white porcelain wash basin sits along the wall under the window.  Rust stains are splattered around the drain where water has dripped for some time."
 
 The glass bottle is a closed openable transparent container.  The bottle is in the basin.
 
-The sack is in the kitchen.  "Lying on the floor is a paper lunch sack."  The sack is a closed openable container.  
+The countertop is a supporter in the kitchen.  The countertop is scenery. The description of countertop is "The marble countertop has been chipped from years of abuse."  Understand "counter" as countertop.
+
+The chimney is a thing.  The chimney is scenery.  The description of chimney is "A small chimney made out of red bricks."
+
+The sack is a closed openable container.  "On the table is a large brown paper sack."     The sack is on the table.  The description of sack is "It's a plain brown paper lunch sack that has some stains as if something wet is inside."
+
+The coconut is in the sack.
 
 The atticstairs is a door.  The atticstairs are open and not openable.  The atticstairs is scenery.  Down from the atticstairs is the kitchen.  
 Understand "attic stairs" or "stairs" as atticstairs.
@@ -428,12 +450,13 @@ Instead of going up in the kitchen while arrival is happening:
 	say "You start up the stairs but it is way too dark."
 	
 before going down in the kitchen while finale is not happening:
-	say "That way down doesn't look to safe." instead.
+	say "Looking down the chimney, you see nothing but darkness and you don't think it would be too safe.." instead.
 
 Instead of entering the atticstairs while arrival is happening:
 	say "You start to climb the stairs but it is much too dark up there."
 
-
+Before printing a locale paragraph about a supporter (called item): 
+	now every thing on the item is mentioned.
 	
 Section - Attic
 
@@ -460,19 +483,26 @@ The Small Room is a room.  The Small Room is north of the cellar.  The descripti
 
 The Small room is in the dungeon
 
-The cot is a supporter in the Small room.  The cot is scenery.  The description of cot is "[first time][finding shirt][only]The cot sits low to the ground and it's mattress sags to touching the floor.".
+The cot is a supporter in the Small room.  The cot is scenery.  The description of cot is "[cot-description]".
 Understand "mattress/bed" as cot.
+
+to say cot-description:
+	if torn shirt is on the cot and first_time of the torn shirt is false:
+		say "[finding shirt]";
+	otherwise:
+		say "The cot sits low to the ground and it's mattress sags to touching the floor".
 
 to say finding shirt:
 	if first_time of the torn shirt is false:
-		say "You approach the cot to take a look when Jenny pushes past you and grabs up a flannel shirt that was laying on top.[paragraph break]'This is the shirt, he was wearing this the day he disappeared,' Jenny cries softly as she holds the shirt close.  'He was here, but look how it's torn and covered in blood.  He must be in trouble.'  She quickly drops the shirt back on the cot and begins to cry.[paragraph break]";
+		say "You approach the cot to take a look when Jenny pushes past you and grabs up a flannel shirt that is laying on top.[paragraph break]'This is the shirt, he was wearing this the day he disappeared,' Jenny cries softly as she holds the shirt close.  'He was here, but look how it's torn and covered in blood.  He must be in trouble.'  She quickly drops the shirt back on the cot and begins to cry.[paragraph break]";
 		now the first_time of the torn shirt is true;
 	otherwise:
-		say "This torn shirt apparently belonged to Marcus.  The shirt is torn almost to threads as if something was bursting out from the inside.";
-	
-After examining the cot for the first time: 
-	now jenny is in the cellar.
+		say "This torn shirt belonged to Marcus and is bloody and torn to threads";
 
+before taking the shirt:
+	if first_time of the torn shirt is false:
+		say "[finding shirt]" instead.
+	
 The torn shirt is on the cot.  The description of torn shirt is "[finding shirt]".
 The torn shirt has a truth state called first_time.  The first_time of the torn shirt is false.
 
@@ -503,7 +533,7 @@ the kitchen is up from the studio.
 
 Understand "count colors" as a mistake ("There are 69 different colors of paint on the wall.")
 
-The sword is a thing.  The initial appearance of the sword is "There is a sword leaning in the northeast corner of the room."  The sword is a weapon.  The sword is in the studio.  The description of sword is "The elvish looking sword is [first time]surprisingly [only]clean and shiny[if sword is in studio and sword is not carried by the player], despite everything else around it being covered in dust[end if]. [if the sword is glowing]  The sword is glowing blue.[end if]"
+The sword is a thing.  The initial appearance of the sword is "There is a sword leaning in the northeast corner of the room."  The sword is a weapon.  The sword is in the studio.  The description of sword is "The sword is [first time]surprisingly [only]clean and shiny[if sword is in studio and sword is not carried by the player], despite everything else around it being covered in dust[end if]. It is very ornate, like something you'd expect to see out of Tolkien.[if the sword is glowing]  The sword is glowing blue.[end if]"
 
 The sword can be glowing or dim.  The sword is dim.
 
@@ -530,7 +560,7 @@ Arrival is a scene.  Arrival begins when play begins.
 Arrival ends when noises_heard of the player is 3.
 
 every turn during arrival:
-	if a random chance of 1 in 2 succeeds:
+	if a random chance of 1 in 3 succeeds:
 		if the player is in the indoors:
 			say "[one of]You hear a door close coming from below the house.[or]You spin around quickly when you hear breathing behind you....nothing is there.[or]Light footsteps can be heard coming from above.[then purely at random]";
 			increase the noises_heard of the player by one.
