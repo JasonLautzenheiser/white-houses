@@ -173,7 +173,16 @@ before saying hello to Jenny while jenny is unconscious:
 	now jenny is the interlocutor;
 	try listing suggested topics instead.]
 	
-After saying hello to Jenny for the first time:
+after quizzing jenny about rug:
+	if rug is NotMoved:
+		if trap door is revealed:
+			say "'Jenny, can you help me move that big oriental rug in the living room?  There is a door under there, but I need your help.'[paragraph break]'Ummmm, sure, ' she replies.  ";
+		otherwise:
+			say "'That rug in the living room is quite beautiful, isn't it?  It's a shame it's been lost in this old house for so long.'";
+	otherwise:
+		say "'Thanks for helping me with the rug Jenny.'".
+
+After saying hello to Jenny when the greeting type is explicit for the first time:
 	if exploration is happening:
 		say "'Jenny, what are we doing out here?'[paragraph break]Jenny looks at you strangely, then smiles and twirls around.  'I thought it would be fun to explore this old place.  Don[']t you just love an adventure?'".
 
@@ -273,7 +282,10 @@ Before opening the front door:
 	if location is living room:
 		say "Seeing that the front door is nailed shut, that is not likely to happen." instead;
 		
-
+Instead of going west in west-house:
+	try opening the front door.
+	
+	
 Section - North of House
 
 A room called north-house is northeast of west-house.  "You are facing the north side of the white house.  There is a window here.".
@@ -436,7 +448,7 @@ The glass bottle is a closed openable transparent container.  The bottle is in t
 
 The countertop is a supporter in the kitchen.  The countertop is scenery. The description of countertop is "The marble countertop has been chipped from years of abuse."  Understand "counter" as countertop.
 
-The chimney is a thing.  The chimney is scenery.  The description of chimney is "A small chimney made out of red bricks."
+The chimney is a thing.  The chimney is scenery in the kitchen.  The description of chimney is "A small chimney made out of red bricks."
 
 The sack is a closed openable container.  "On the table is a large brown paper sack."     The sack is on the table.  The description of sack is "It's a plain brown paper lunch sack that has some stains as if something wet is inside."
 
@@ -474,8 +486,13 @@ The Cellar is a room.  The cellar is down from the trap door.  The description o
 The cellar is in the dungeon.
 
 Check going west while in cellar:
-	say "You couldn't help yourself but to try and climb the ramp, but it is too slippery and you slide back down." instead.
+	say "You couldn't help but to try and climb the ramp, but it is too slippery and you slide back down." instead.
 
+The ramp is a thing.  The ramp is scenery in the cellar.  The description of ramp is "It is a steep metal ramp that does not appear climbable."
+
+Check climbing ramp:
+	try going west instead.
+	
 
 Section - Small Room
 
@@ -483,7 +500,7 @@ The Small Room is a room.  The Small Room is north of the cellar.  The descripti
 
 The Small room is in the dungeon
 
-The cot is a supporter in the Small room.  The cot is scenery.  The description of cot is "[cot-description]".
+The cot is an enterable supporter in the Small room.  The cot is scenery.  The description of cot is "[cot-description]".
 Understand "mattress/bed" as cot.
 
 to say cot-description:
