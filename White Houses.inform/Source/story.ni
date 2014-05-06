@@ -96,7 +96,7 @@ The thief is a male person.
 
 Section - Troll
 
-The troll is an person.  Understand "Marcus" as troll.  The description of the troll is "[if the troll is conscious]A nasty looking man, more of a troll really than the man he once was.  He carries with him a large bloody axe.[otherwise]Even though the troll lies unsconscious, he is still pretty nasty looking and his axe looks pretty deadly.[end if]".
+The troll is an person.  Understand "Marcus/creature/beast/trollish/man" as troll.  The description of the troll is "[if the troll is conscious]A nasty looking man, more of a troll really than the man he once was.  He carries with him a large bloody axe.[otherwise]Even though the troll lies unsconscious, he is still pretty nasty looking and his axe looks pretty deadly.[end if]".
 
 The hitpoints of the troll is 10.
 The troll has a number called attack-count.  The attack-count of the troll is 0.
@@ -123,6 +123,7 @@ instead of attacking the troll:
 						say "He looks very weak now.";
 				otherwise:
 					say "He slowly sinks to his knees and then plops over on his back unconscious.";
+					now the troll is unconscious;
 		otherwise:
 			say "You swing wildly, completely missing the trollish man.";
 	otherwise:
@@ -153,6 +154,18 @@ before throwing something at the troll:
 Before giving something to the troll:
 	say "Not wanting to get too close to him, you toss [the noun] at the troll.";
 	try throwing the noun at the troll instead.
+	
+before saying hello  to the troll:
+	say "You try to talk to the beast.....but he just stares at you and grunts." instead.
+	
+The axe is a weapon.  The troll carries the axe.  The description of the axe is "A large and bloodied axe."
+
+Before taking the axe:
+	if the troll is unconscious:
+		say "You grab the axe, but it is much to heavy to pick up." instead;
+	otherwise:
+		say "You reach for the ax, but the troll thinks you're trying to attack.";
+		now the attack-count of the troll is 1 instead.
 	
 Section - Conversation
 
@@ -208,13 +221,11 @@ after quizzing jenny about dreams:
 	try listing suggested topics.
 	
 after quizzing jenny about endings:
-	say "[remove endings ask suggestion]After a long silence, you ask; 'Jenny, what about the ending?'";
-	say "Jenny looks up at you startled as if she has just seen you for the first time.  'We have to find him....he[']s alive, I know it.'[rush-out]";
-	reset the interlocutor;
-	now jenny is in the living room.
+	say "[remove endings ask suggestion]After a long silence, you ask; 'Jenny, what about the ending?'[paragraph break]Jenny looks up at you startled as if she has just seen you for the first time.  'We have to find him....he[']s alive, I know it.'[rush-out].";
+	reset the interlocutor.
 	
 to say rush-out:
-	say "[if location is the attic][paragraph break]She rushes out of the attic and back downstairs, leaving you in the dimly lit attic.[end if]"
+	say "[if location is the attic][paragraph break]She stands up and looks anxious to begin looking for Marcus[end if]"
 	
 Chapter - Underlying
 
@@ -377,8 +388,17 @@ The hooks are a supporter in the living room.  The hooks are scenery.  "There ar
 
 Understand "hang [something preferably held] on [something]" as putting it on.
 
-A battery-powered brass lantern is on the hooks.  "A battery powered brass lantern is hanging from one of the hooks on the wall."
+A battery-powered brass lantern is a device on the hooks.  "A battery powered brass lantern is hanging from one of the hooks on the wall."
+ The lantern is switched off.  Understand "lamp" as lantern
 
+After switching on the lantern:
+	say "You turn on the lantern.";
+	now the lantern is lit.
+	
+After switching off the lantern:
+	say "You turn off the lantern.";
+	now the lantern is unlit.
+	
 An oriental rug is here.  "In the center of the room is [if the trap door is not revealed]a large oriental rug.[otherwise][status of the trap door] trap door."  Understand "carpet" as rug.
 The rug can be IMoved or NotMoved.  The rug is NotMoved.
 
@@ -448,8 +468,6 @@ The glass bottle is a closed openable transparent container.  The bottle is in t
 
 The countertop is a supporter in the kitchen.  The countertop is scenery. The description of countertop is "The marble countertop has been chipped from years of abuse."  Understand "counter" as countertop.
 
-The chimney is a thing.  The chimney is scenery in the kitchen.  The description of chimney is "A small chimney made out of red bricks."
-
 The sack is a closed openable container.  "On the table is a large brown paper sack."     The sack is on the table.  The description of sack is "It's a plain brown paper lunch sack that has some stains as if something wet is inside."
 
 The coconut is in the sack.
@@ -481,7 +499,7 @@ The dungeon is a region.
 
 Section - Cellar
 
-The Cellar is a room.  The cellar is down from the trap door.  The description of cellar is "You are in a dark and damp cellar.  A narrow passageway leads north and to the south you may be able to crawl through a small opening.   To the west is a steep ramp that does not appear climbable.  Leading up is a set of old wooden stairs that end in a [if trap door is closed]closed[otherwise]open[end if] trap door."
+The Cellar is a dark room.  The cellar is down from the trap door.  The description of cellar is "You are in a dark and damp cellar.  A narrow passageway leads north and to the south you may be able to crawl through a small opening.   To the west is a steep ramp that does not appear climbable.  Leading up is a set of old wooden stairs that end in a [if trap door is closed]closed[otherwise]open[end if] trap door."
 
 The cellar is in the dungeon.
 
@@ -492,8 +510,14 @@ The ramp is a thing.  The ramp is scenery in the cellar.  The description of ram
 
 Check climbing ramp:
 	try going west instead.
-	
 
+Every turn when in darkness:
+	if the player is not carrying the lantern:
+		say "Jenny whispers, 'It[']s a good thing I picked up the lantern that you left behind.  You never know what you might run into in the dark.  Here you can carry it, ' and she hands you the lantern.";
+		now the lantern is switched on;
+		now the player carries the lantern.
+		
+	
 Section - Small Room
 
 The Small Room is a room.  The Small Room is north of the cellar.  The description of Small Room is "This walls of this small room are covered in deep grooves and old stains.  There is a small cot in one corner.  The only exit is to the south." 
@@ -542,11 +566,19 @@ Gallery is a room.  The gallery is east of the chasm room.  The gallery is in th
 
 The painting is a thing.  The painting is in the gallery.   The initial appearance of the painting is "There is a grand painting hanging on the east wall."The description of the painting is "Despite being a large and colorful painting, there is surprisingly nothing special about it."
 
+looking behind is an action applying to one thing.
+understand "look behind [something]" as looking behind.
+
+before looking behind the painting:
+	if the player is not carrying the painting:
+		say " You move the painting to the side slightly, but see nothing behind it."
+		
+		
 Section - Studio
 
 The Studio is a room.  The Studio is in the dungeon.  The studio is north of the gallery. The description of the studio is "You are in an artists studio, one that has not been used for many years, but you can still make out splatters of paint of many colors on the walls, floor and even on the ceiling.  On the north wall is a fireplace with a narrow chimney leading up."
 
-the kitchen is up from the studio.
+The chimney is an open unopenable door.  The chimney is scenery.  The chimney is up from the studio.  The chimney is down from the kitchen. The description of chimney is "A small chimney made out of red bricks."
 
 Understand "count colors" as a mistake ("There are 69 different colors of paint on the wall.")
 
@@ -554,8 +586,15 @@ The sword is a thing.  The initial appearance of the sword is "There is a sword 
 
 The sword can be glowing or dim.  The sword is dim.
 
-Before dropping the sword:
-	say "As you begin to lay the sword down, you feel a strong urge that you need to hold on to it." instead.
+Before going up from the studio while the player is carrying the sword:
+	say "You try to climb up the chimney, but you can't get a good grip while holding on the sword." instead.
+
+[Before dropping the sword:
+	say "As you begin to lay the sword down, you feel a strong urge that you need to hold on to it." instead.]
+
+before going south in the studio:
+	if the troll is in the studio and the troll is not unconscious:
+		say "The troll blocks your exit through the doorway.  You'll have to either kill him or find another way out." instead;
 
 Every turn while the player is carrying the sword:
 	if the troll is in an adjacent room or the troll is in the location:
@@ -610,7 +649,7 @@ Chapter - Attack
 Attack-troll is a scene.  Attack-troll begins when the attack-count of the troll is greater than 0.  Attack-troll ends when the troll is unconscious.
 
 Every turn during attack-troll:
-	if troll is in the location:
+	if troll is in the location and the troll is not unconscious:
 		say "He slowly brings his axe up and swings it at you.[paragraph break]";
 		if a random chance of 1 in 4 succeeds:
 			say "You aren't quick enough and his axe [hit-me].";
@@ -626,6 +665,7 @@ Every turn during attack-troll:
 				now the player is in west-house;
 		otherwise:
 			say "Luckily you are quick enough to evade his swing.".
+	
 			
 To say hit-me:
 	say "[one of]slices your cheek open[or]takes a chunk of skin from your arm[or]nearly removes your right ear[or]slices open your right breast[then at random]".
@@ -633,6 +673,17 @@ To say hit-me:
 Chapter - Finale
 
 Finale is a scene.  Finale begins when the player carries the sword.
+
+Every turn while finale is happening:
+	if the troll is unconscious:
+		if a random chance of 1 in 2 succeeds:
+			say "[get-out]";
+	otherwise:
+		if a random chance of 1 in 4 succeeds:
+			say "[get-out]".
+			
+To say get-out:
+	say "[one of]You really need to go get help.[or]Jenny could be dying, you need to get someone.[or]You have to escape and get someone to help Jenny.[or]Get out of the house quickly or Jenny is a goner.[then at random]". 
 
 When finale begins:
 	now the sword is glowing;
@@ -647,9 +698,15 @@ When finale begins:
 	
 
 before going east from the kitchen while finale is happening:
-	say "As you climb out the window, your sword begins to glow blue again.  You start away from the house, you take a single glance back, but that is enough to see through the open window the trap door in the living room bursting open and the deformed head of Marcus coming up from below.  You turn and run, never mentioning your adventure to anyone.";
-	end the game saying "You escaped and hid the sword away.  But every so often you think you see a faint blue glow and you remember the white house."
+	say "You climb out the window and run to get help, but it's a long way back to civilization.  After a few hours you convince the authorities to follow you out to the white house.  The police break down the front door and stream into the living room to find [bodies-found] [paragraph break]You were thankful you didn't mention the trap-door in the floor as when the house was searched, none was found.  The only items of any interest were an old broken lantern laying in a corner of the kitchen and a rusty old sword hanging on hooks above a the broken frame of a glass display case in the living room. [Paragraph break]As you leave the house wondering if you were indeed going crazy, you take a last glance back through the front door.  Your eyes fall upon the sword and through the rust, you think you see it begin to glow blue.";
+	end the game saying "You often wander back to the white house, but you never have the guts to go back inside.  But the faint blue glow is unmistakeable...is it glowing for you?  Or from the evil below."
 	
+To say bodies-found:
+	if the troll is unconscious:	
+		say "the skeletal remains of Jenny and Marcus.  Both had been dead for a long time, even though you were only gone a few hours.";
+	otherwise:
+		say "no bodies at all."
+		
 [before going west from the living room while finale is happening:	
 	say "As you leave through the front door, your sword begins to glow blue again.  You start away from the house, you take a single glance back, but that is enough to see through the open window the trap door in the living room bursting open and the deformed head of Marcus coming up from below.  You turn and run, never mentioning your adventure to anyone.";
 	end the game saying "You escaped and hid the sword away.  But every so often you think you see a faint blue glow and you remember the white house."]
