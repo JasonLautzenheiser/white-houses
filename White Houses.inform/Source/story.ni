@@ -8,7 +8,7 @@ Include Complex Listing by Emily Short.
 Include Simple Followers by Emily Short.
 Include Exit Lister by Eric Eve.
 
-The release number is 1.
+The release number is 3.
 The story creation year is 2014.
 
 Part - Setup
@@ -19,7 +19,7 @@ A thing can be a weapon.  A thing is usually not a weapon.
 A person can be conscious or unconscious.  A person is usually conscious.
 A person has  a number called hitpoints.  The hitpoints of a person is usually 10.
 
-The player is a female.  
+The player is a female.  The description of the player is "You've always thought of yourself as rather plain.  And your demeanor shows your lack of self-confidence."
 
 The player has a number called noises_heard.  The noises_heard of the player is usually 0.
 The hitpoints of the player is 6.
@@ -32,6 +32,20 @@ Abouting is an action out of world.
 Carry out abouting:
 	say "White Houses is a Shufflecomp 2014 entry.  It is very loosly based on the song 'White Houses' by Vanessa Carlton.  I really mean very loosly, in fact little from the song was used for inspiration other than the title and some NPC information.[paragraph break]This is an early Alpha version released to meet the deadline for entry and in dire need of further testing.  There are plenty of items I would like to implement and as you move through the game, you can probably guess at some of the items / actions that I'd still like to implement.[paragraph break]I do appreciate you taking a look and any feedback at this point can be directed to me (if you are playing this at this point, you and I have already talked so you'll know how to get in touch with me."
 
+Before listing nondescript items: 
+	if the troll is marked for listing:
+		now the troll is not marked for listing;
+		if the troll is unconscious:
+			say "The large troll lays unconscious on the ground.[line break][line break]";
+		otherwise:
+			say "The troll breathes heavily and stares in your general direction.[line break][line break]";
+	if jenny is marked for listing:
+		now the jenny is not marked for listing;
+		if jenny is unconscious:
+			say "Jenny lies in a heap on the ground.  She appears to still be breathing, but just barely.[line break]";
+		otherwise:
+			say "Jenny stands close to you.[line break][line break]";
+		
 
 Chapter - Mistakes
 
@@ -75,7 +89,7 @@ Chapter - Characters
 
 Section - Jenny
 
-Jenny is a female person.  The description of Jenny is "Jenny is a beautiful young woman with a vibrant personallity.  She is slim and athletic which comes from her years of dance.  She has always dreamed of becoming a ballerina and you suspect that with her long slender figure she would make a great one.  [if jenny is unconscious]Jenny currently lies in a heap, you hope only unconscious.[end if]".
+Jenny is a female person.  The description of Jenny is "[if jenny is unconscious]Jenny currently lies in a heap, you hope only unconscious.[otherwise]Jenny is a beautiful young woman with a vibrant personallity.  She is slim and athletic which comes from her years of dance.  She has always dreamed of becoming a ballerina and you suspect that with her long slender figure she would make a great one.[end if]".
 
 before taking the jenny:
 	if jenny is unconscious:
@@ -98,14 +112,14 @@ Section - Troll
 
 The troll is an person.  Understand "Marcus/creature/beast/trollish/man" as troll.  The description of the troll is "[if the troll is conscious]A nasty looking man, more of a troll really than the man he once was.  He carries with him a large bloody axe.[otherwise]Even though the troll lies unsconscious, he is still pretty nasty looking and his axe looks pretty deadly.[end if]".
 
-The hitpoints of the troll is 10.
+The hitpoints of the troll is 7.
 The troll has a number called attack-count.  The attack-count of the troll is 0.
 Does the player mean attacking the troll:  it is likely.
 
 instead of attacking the troll:
 	now the attack-count of the troll is 1;
 	if the player is carrying the sword:
-		if a random chance of 1 in 2 succeeds:
+		if a random chance of 2 in 3 succeeds:
 			say "You swing the sword at the trollish creature rather clumsily, but you still manage to hit him [location-of-hit] before he manages to get his axe up to deflect your swing";
 			if a random chance of 1 in 6 succeeds:
 				say "....and he falls unconscious to the ground.";
@@ -124,6 +138,7 @@ instead of attacking the troll:
 				otherwise:
 					say "He slowly sinks to his knees and then plops over on his back unconscious.";
 					now the troll is unconscious;
+				say "[paragraph break]";
 		otherwise:
 			say "You swing wildly, completely missing the trollish man.";
 	otherwise:
@@ -176,6 +191,7 @@ adventure is a familiar subject.
 passages are a familiar subject.
 endings are a subject.
 Marcus is a subject.
+White house is a familiar.
 dreams are a familiar subject.  Understand "dream" as dreams.
 
 before saying hello to Jenny while jenny is unconscious:
@@ -200,7 +216,11 @@ After saying hello to Jenny when the greeting type is explicit for the first tim
 		say "'Jenny, what are we doing out here?'[paragraph break]Jenny looks at you strangely, then smiles and twirls around.  'I thought it would be fun to explore this old place.  Don[']t you just love an adventure?'".
 
 after quizzing jenny about adventure:
-	say "'Jenny, what adventure are you talking about?  You said you had something important to tell me.' [paragraph break]Jenny looks at you oddly, 'There are passages below this house.....I have to find how to get to them......I need your help.'[remove adventure ask suggestion][add passages ask suggestion]";
+	say "'Jenny, what adventure are you talking about?  You said you had something important to tell me.' [paragraph break]Jenny looks at you oddly, 'There are passages below this house.....I have to find how to get to them......I need your help.'[remove adventure ask suggestion][add passages ask suggestion][add white house ask suggestion]";
+	try listing suggested topics.
+	
+after quizzing jenny about the white house:
+	say "[remove white house ask suggestion]'Who's house is this?'[paragraph break]'Marcus and I found this place one day when we were on a hike.  We thought it was odd out here in the middle of nowhere, so we decided to explore,' Jenny replied.";
 	try listing suggested topics.
 	
 after quizzing jenny about jenny:
@@ -217,7 +237,7 @@ after quizzing jenny about Marcus:
 	try listing suggested topics.
 
 after quizzing jenny about dreams:
-	say "[remove dreams ask suggestion][add endings ask suggestion]'What were in these dreams?'[paragraph break]Jenny hesitated for just a moment.  'Mostly they didn't make sense.  He would wake up talking about this house and the forest around it.  He would say the dream always started with him climbing through the back window into the house.  He would explore the house and end up in the cellar....he always went down.'[paragraph break]'Once there, it was always different.  Sometimes he would talk about walking in on a large man, a trollish looking man,  and having to fight his way out.  Other times, there would be a shadowy figure that would appear at random, stare at him briefly, come close as if to say something then leave just as silently as he came.'[paragraph break]'Then he would travel around discovering random items and strange areas and he would always say, stay away from dark areas....they were deadly.'[paragraph break]'It often turned to gibberish by now, but the ending was always the same...'"; 
+	say "[remove dreams ask suggestion][add endings ask suggestion]'What were in these dreams?'[paragraph break]Jenny hestitates for just a moment.  'Mostly they didn't make sense.  He would wake up talking about this house and the forest around it.  He would say the dream always started with him climbing through the back window into the house.  He would explore the house and end up in the cellar....he always went down.'[paragraph break]'Once there, it was always different.  Sometimes he would talk about walking in on a large man, a trollish looking man,  and having to fight his way out.  Other times, there would be a shadowy figure that would appear at random, stare at him briefly, come close as if to say something then leave just as silently as he came.'[paragraph break]'Then he would travel around discovering random items and strange areas and he would always say, stay away from dark areas....they were deadly.'[paragraph break]'It often turned to gibberish by now, but the ending was always the same...'"; 
 	try listing suggested topics.
 	
 after quizzing jenny about endings:
@@ -275,6 +295,8 @@ To say  random-infocom-term:
 	
 A fixed in place supporter called a rubber welcome mat is in west-house.  "A rubber mat saying 'Welcome to' lies by the door.". The description of the mat is "The mat says 'Welcome to' in bold letters and below that are some faded letters that you can hardly make out."
 
+The letters are part of the mat.  The description of letters is "The faded letters are hard to make out, but the first one looks slightly like a 2 or perhaps a 'Z'."
+
 Mat under is a truth state that varies.  Mat under is usually false.
 After taking, pushing, or pulling the rubber welcome mat:
 	if something (called the thingy) is on the mat:
@@ -285,7 +307,7 @@ After taking, pushing, or pulling the rubber welcome mat:
 		change mat under to false;
 		continue the action.
 
-The front door is a door in west-house.  The front door is scenery. The front door is closed.  The front door is lockable and locked.  The front door is west of the Living Room and east of west-house.  The front door is not apparent.
+The front door is a door in west-house.  The front door is scenery. The front door is closed.  The front door is lockable and locked.  The front door is west of the Living Room and east of west-house.  The front door is not apparent.  The description of the front door is "[if the player is in west-house]The door is a heavy oak door....painted white like the rest of the house.[otherwise]The door appears to be nailed shut.  There is some odd gothic graffiti painted on the door.[end if]".
 
 Before opening the front door:
 	if location is west-house:
@@ -376,7 +398,9 @@ Chapter - Rooms
 
 Section - Living Room
 
-The Living Room is a room.  The living room is in the indoors.  The description of living room is "This is the living room.  There is a door to the east leading to [if kitchen has been visited]the kitchen[otherwise]what looks like may be the kitchen[end if].  To the west, there is a wooden door with odd gothic lettering."
+The Living Room is a room.  The living room is in the indoors.  The description of living room is "This is the living room.  There is a door to the east leading to [if kitchen has been visited]the kitchen[otherwise]what looks like may be the kitchen[end if].  To the west, there is a wooden door with odd gothic graffiti."
+
+Graffiti is a part of the front door.  The description of graffiti is "[if the player is in the living room]You can't make out the language the graffiti is written in.[otherwise]You can't see any such thing.[end if]"
 
 Down from the living room is a secret door called the trap door.  The trap door is not apparent.  
 Does the player mean doing something with the trap door when the trap door is not apparent: it is very unlikely.
@@ -399,7 +423,7 @@ After switching off the lantern:
 	say "You turn off the lantern.";
 	now the lantern is unlit.
 	
-An oriental rug is here.  "In the center of the room is [if the trap door is not revealed]a large oriental rug.[otherwise][status of the trap door] trap door."  Understand "carpet" as rug.
+An oriental rug is here.  "In the center of the room is [if the trap door is not revealed]a large oriental rug.[otherwise][status of the trap door] trap door."  Understand "carpet" as rug.  The description of rug is "The old oriental rug covers much of the living room floor.  It is well worn and rather ragged."
 The rug can be IMoved or NotMoved.  The rug is NotMoved.
 
 Check looking under the rug: 
@@ -438,7 +462,8 @@ After pushing or pulling the rug:
 After going through the trap door: 
 	say "You descend down the stairs into the dark cellar.[paragraph break]";
 	shut the player in;
-	now jenny is in the cellar.
+	if jenny is not unconscious:
+		now jenny is in the cellar.
 	
 To shut the player in:
 	say "The trap door crashes shut and you hear someone barring it.";
@@ -493,6 +518,9 @@ Section - Attic
 The Attic is a room.  The attic is up from the atticstairs.  The description of attic is "The dimly lit attic is empty except for plenty of cobwebs." 
 The attic is in the indoors.
 
+The cobwebs are scenery in the attic.  The description of cobwebs is "You really don't like spiders and the thought of what might be crawling around in this attic is enough to keep you from looking too closely."
+
+
 Part - Below the White House
 
 The dungeon is a region.
@@ -515,6 +543,7 @@ Every turn when in darkness:
 	if the player is not carrying the lantern:
 		say "Jenny whispers, 'It[']s a good thing I picked up the lantern that you left behind.  You never know what you might run into in the dark.  Here you can carry it, ' and she hands you the lantern.";
 		now the lantern is switched on;
+		now the lantern is lit;
 		now the player carries the lantern.
 		
 	
@@ -550,19 +579,29 @@ The torn shirt has a truth state called first_time.  The first_time of the torn 
 Instead of wearing the shirt:
 	say "It's pretty bloody and not much more than rags now."
 
+Stains are scenery in the small room.  the description of stains is "The old stains are a deep red color and splattered all over the wall."
+Grooves are scenery in the small room.  The description of grooves are "The deep groves scar the walls." 
+
+
 Section - East of Chasm
 
-Chasm Room is a room.  The printed name of Chasm Room is "East of Chasm".  The chasm room is in the dungeon.  The chasm room is south of cellar.  The description of chasm room is "You are on the east end of a wide chasm.  Looking down you can't make out the bottom in the dim light.  A narrow passage heads north through which you could crawl and the path you are on continues to the east."
+Chasm-Room is a room.  The printed name of Chasm-Room is "East of Chasm".  The chasm-room is in the dungeon.  The chasm-room is south of cellar.  The description of chasm-room is "You are on the east end of a wide chasm.  Looking down you can't make out the bottom in the dim light.  A narrow passage heads north through which you could crawl and the path you are on continues to the east."
 
-Before jumping in the chasm room:
+Before jumping in the chasm-room:
 	say "You may want to think twice about jumping in this close to the chasm." instead.
 	
-before going down in the chasm room:
+before going down in the chasm-room:
+	say "The chasm problably leads to a very bad place." instead.
+
+before going west in the chasm-room:
 	say "The chasm problably leads to a very bad place." instead.
 	
+The chasm is scenery in the chasm-room.  The description of chasm is "Looking down into the chasm, you see that it is very dark and very deep...best not too get too close."	
+
+
 Section - Gallery
 
-Gallery is a room.  The gallery is east of the chasm room.  The gallery is in the dungeon.  The description of gallery is "You are in a small room.  Their is a doorway to the north and a pathway heads west."
+Gallery is a room.  The gallery is east of the chasm-room.  The gallery is in the dungeon.  The description of gallery is "You are in a small room.  Their is a doorway to the north and a pathway heads west."
 
 The painting is a thing.  The painting is in the gallery.   The initial appearance of the painting is "There is a grand painting hanging on the east wall."The description of the painting is "Despite being a large and colorful painting, there is surprisingly nothing special about it."
 
@@ -580,7 +619,13 @@ The Studio is a room.  The Studio is in the dungeon.  The studio is north of the
 
 The chimney is an open unopenable door.  The chimney is scenery.  The chimney is up from the studio.  The chimney is down from the kitchen. The description of chimney is "A small chimney made out of red bricks."
 
+Understand "count splatters" as a mistake ("There are 69 different colors of paint on the wall.")
+
+Understand "count paint" as a mistake ("There are 69 different colors of paint on the wall.")
+
 Understand "count colors" as a mistake ("There are 69 different colors of paint on the wall.")
+
+The paint is scenery in the studio.  The description of paint is "The paint is splatter all over the room;  floors, walls, ceiling....everywhere."  Understand "colors/splatter/color/splatters" as paint.
 
 The sword is a thing.  The initial appearance of the sword is "There is a sword leaning in the northeast corner of the room."  The sword is a weapon.  The sword is in the studio.  The description of sword is "The sword is [first time]surprisingly [only]clean and shiny[if sword is in studio and sword is not carried by the player], despite everything else around it being covered in dust[end if]. It is very ornate, like something you'd expect to see out of Tolkien.[if the sword is glowing]  The sword is glowing blue.[end if]"
 
@@ -652,23 +697,23 @@ Every turn during attack-troll:
 	if troll is in the location and the troll is not unconscious:
 		say "He slowly brings his axe up and swings it at you.[paragraph break]";
 		if a random chance of 1 in 4 succeeds:
-			say "You aren't quick enough and his axe [hit-me].";
+			say "You aren't quick enough and his axe [hit-me]";
 			let hitvalue be a random number between 1 and 2;
 			now the hitpoints of the player are the hitpoints of the player minus hitvalue;
 			if the hitpoints of the player are greater than 0:
 				if the hitpoints of the player are greater than 4:
-					say "You stagger back from the wound and begin looking for a way out.  Finding none, you have no choice but to fight.";
+					say "[line break]You stagger back from the wound and begin looking for a way out.  Finding none, you have no choice but to fight.";
 				else if hitpoints of the player are greater than 2:
-					say "Your wounds are getting pretty severe, you're not sure how much longer you will last.";
+					say "[line break]Your wounds are getting pretty severe, you're not sure how much longer you will last.";
 			otherwise:
-				say "Darkness begins to cloud your eyes.  As you sink to your knees you see the troll-man raise his axe one more time......[paragraph break]**** You have died ****[paragraph break]Well why not, you deserve another chance,  I'll fix you up the best I can.";
+				say "[line break]Darkness begins to cloud your eyes.  As you sink to your knees you see the troll-man raise his axe one more time......[paragraph break]**** You have died ****[paragraph break]Well why not, you deserve another chance,  I'll fix you up the best I can.";
 				now the player is in west-house;
 		otherwise:
 			say "Luckily you are quick enough to evade his swing.".
 	
 			
 To say hit-me:
-	say "[one of]slices your cheek open[or]takes a chunk of skin from your arm[or]nearly removes your right ear[or]slices open your right breast[then at random]".
+	say "[one of]slices your cheek open[or]takes a chunk of skin from your arm[or]nearly removes your right ear[or]slices open your right breast[then at random]."
 	
 Chapter - Finale
 
