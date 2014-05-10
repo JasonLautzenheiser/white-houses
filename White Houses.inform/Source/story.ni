@@ -4,12 +4,17 @@ Include Locksmith by Emily Short.
 Include Conversation Framework by Eric Eve.
 Include Conversation Responses by Eric Eve.
 Include Conversation Suggestions by Eric Eve.
+Include Conversational Defaults by Eric Eve.
+Include Exit Lister by Eric Eve.
 Include Complex Listing by Emily Short.
 Include Simple Followers by Emily Short.
-Include Exit Lister by Eric Eve.
 
 The release number is 3.
 The story creation year is 2014.
+
+use American dialect.
+
+[Use no deprecated features.]
 
 Part - Setup
 
@@ -22,7 +27,7 @@ A person has  a number called hitpoints.  The hitpoints of a person is usually 1
 The player is a female.  The description of the player is "You've always thought of yourself as rather plain.  And your demeanor shows your lack of self-confidence."
 
 The player has a number called noises_heard.  The noises_heard of the player is usually 0.
-The hitpoints of the player is 6.
+The hitpoints of the player is 7.
 
 When play begins:
 	say "Jenny called you late and ask to meet you out here in the middle of nowhere.  You've never been this far in the forest before and you never knew this white house was out here.  She said she had something important to tell you and she never joked about those kinds of things so you felt it must be important...so you came.....against your best judgement, but you've always been a good friend.....you just hope you don't regret it."
@@ -30,7 +35,7 @@ When play begins:
 Understand "about" or "credits" or "credit" or "info" as abouting.
 Abouting is an action out of world.
 Carry out abouting:
-	say "White Houses is a Shufflecomp 2014 entry.  It is very loosly based on the song 'White Houses' by Vanessa Carlton.  I really mean very loosly, in fact little from the song was used for inspiration other than the title and some NPC information.[paragraph break]This is an early Alpha version released to meet the deadline for entry and in dire need of further testing.  There are plenty of items I would like to implement and as you move through the game, you can probably guess at some of the items / actions that I'd still like to implement.[paragraph break]I do appreciate you taking a look and any feedback at this point can be directed to me (if you are playing this at this point, you and I have already talked so you'll know how to get in touch with me."
+	say "[bold type]White Houses © 2014 by Mr. Stamp[roman type] is a Shufflecomp 2014 entry.  It is very loosly based on the song 'White Houses' by Vanessa Carlton.  I really mean very loosly, in fact little from the song was used for inspiration other than the title and some NPC information.[paragraph break]During the competition, we are to keep our identities secret, so I can't tell you who I really am.  Afterwards, you'll be able to find out easy enough.  Thanks to the many testers that helped me out, but I'll wait until after the competition to reveal who those were as well.[paragraph break]I hope you enjoy this short piece as much as I enjoyed creating it."
 
 Before listing nondescript items: 
 	if the troll is marked for listing:
@@ -49,7 +54,7 @@ Before listing nondescript items:
 
 Chapter - Mistakes
 
-Understand "xyzzy" and "PLUGH" as a mistake ("You hear a noise in the distance , sounds like someone just called you a fool.").
+Understand "xyzzy" and "PLUGH" as a mistake ("You hear a noise in the distance.  Sounds like someone just called you a fool.").
 Understand "win" and "winnage" as a mistake ("Sure you'd like that wouldn't you.").
 Understand "lose" as a mistake ("I can't lose.").
 Understand "chomp"  as a mistake("That's just silly.").
@@ -192,6 +197,7 @@ passages are a familiar subject.
 endings are a subject.
 Marcus is a subject.
 White house is a familiar.
+find him is a subject.  Understand "find marcus" as find him.
 dreams are a familiar subject.  Understand "dream" as dreams.
 
 before saying hello to Jenny while jenny is unconscious:
@@ -201,6 +207,16 @@ before saying hello to Jenny while jenny is unconscious:
 	say "Hey Jenny.";
 	now jenny is the interlocutor;
 	try listing suggested topics instead.]
+
+default tell response for jenny:
+	say "You begin to tell Jenny, but she doesn't seem to be paying any attention to you at the moment.";
+	
+default ask response for jenny:
+	say "'I really don't know much about that.'";
+	
+default give-show response for jenny:
+	say "You give the [the noun] to her.  She takes it, looks at it absentmindlessly and sets it down.";
+	now the noun is in the location.
 	
 after quizzing jenny about rug:
 	if rug is NotMoved:
@@ -220,11 +236,11 @@ after quizzing jenny about adventure:
 	try listing suggested topics.
 	
 after quizzing jenny about the white house:
-	say "[remove white house ask suggestion]'Who's house is this?'[paragraph break]'Marcus and I found this place one day when we were on a hike.  We thought it was odd out here in the middle of nowhere, so we decided to explore,' Jenny replied.";
+	say "[remove white house ask suggestion]Whose house is this?'[paragraph break]'Marcus and I found this place one day when we were on a hike.  We thought it was odd out here in the middle of nowhere, so we decided to explore.'";
 	try listing suggested topics.
 	
 after quizzing jenny about jenny:
-	say "[remove self-suggestion ask suggestion]'What has come over you lately?  Jenny, you[']ve been acting so strangely.'  [paragraph break]'Why nothing is wrong.  I'm just sick of waiting for life to find me, it[']s time to seek it out.'";
+	say "[remove self-suggestion ask suggestion]'What has come over you lately?  Jenny, you[']ve been acting so strangely.'  [paragraph break]'Why, nothing is wrong.  I'm just sick of waiting for life to find me, it[']s time to seek it out.'";
 	try listing suggested topics.
 	
 after quizzing jenny about passages:
@@ -267,15 +283,42 @@ Chapter - Items
 
 Section  - Coconut
 
-The coconut is a thing.  The description of coconut is "The coconut appears to be over ripe.  In fact, the odor is terrible, it must be centuries over ripe.  The shell is still intact and is very hard."
+The coconut is a thing.  The description of coconut is "The coconut appears to be over-ripe.  In fact, the odor is terrible, it must be centuries over ripe.  The shell is still intact and is very hard."
 
 Instead of smelling the coconut:
+	say "[smell-coconut]";
+
+to say smell-coconut:
 	say "You catch a whiff of the coconut and it smells like a dead corpse that has been laying in the hot sun for too long.  You begin to feel a bit nauseous."
+
 	
+instead of smelling while the player carries the coconut:
+	try smelling the coconut.
 	
+[before smelling while the coconut is seen:
+	if the coconut is in scope:
+		say "[smell-coconut]";
+]
+instead of eating the coconut:
+	say "While you normally enjoy coconut, the smell of this one is too much to overcome."
+	
+
 Part - Outdoors Around the House
 
 The outdoors is a region.
+
+instead of going nowhere in outdoors:
+	if finale is happening:
+		say "It's dark, but you overcome your fear in the hopes you can save Jenny.  After a few hours you convince the authorities to follow you out to the white house.  The police break down the front door and stream into the living room to find [bodies-found] [paragraph break]You were thankful you didn't mention the trap-door in the floor as when the house was searched, none was found.  The only items of any interest were an old broken lantern laying in a corner of the kitchen and a rusty old sword hanging on hooks above the broken frame of a glass display case in the living room. [Paragraph break]As you leave the house wondering if you were indeed going crazy, you take a last glance back through the front door.  Your eyes fall upon the sword and through the rust, you think you see it begin to glow blue.";
+		end the story saying "You often wander back to the white house, but you never have the guts to go back inside.  But the faint blue glow is unmistakeable...is it glowing for you?  Or from the evil below.";
+	otherwise:
+		say "You just got here and it's getting too dark to make your way through the field and into the woods again."
+	
+instead of entering house in outdoors:
+	say "You can't find a way into the house from here."
+	
+instead of climbing house in outdoors:
+	say "You've always been afraid of heights.  I don't think climbing the house would be a smart idea."
 
 Chapter - Rooms
 
@@ -288,26 +331,23 @@ west-house is in the outdoors.  The printed name of west-house is "West of House
 The small mailbox is a container in west-house.  The mailbox is fixed in place, closed, and openable.
 Understand "box" and "mail box" and "mail-box" as the mailbox.  The description of mailbox is "The small mailbox is [if mailbox is open]open[otherwise]closed[end if]."
 
-The pamphlet is in the mailbox.  The description of pamphlet is "It's a copy of a newsletter called 'The Status Line', whatever that is.  [paragraph break]You scan the newsletter, but none of it really makes sense.  What is a [random-infocom-term] anyway?".
+The pamphlet is in the mailbox.  The description of pamphlet is "It's a copy of a newsletter called 'The Status Line,' whatever that is.  [paragraph break]You scan the newsletter, but none of it really makes sense.  What is [random-infocom-term] anyway?".
 
 To say  random-infocom-term:
-	say "[one of]fooblitzky[or]babel fish[or]grue[or]zorkmid[or]feelie[or]implementor[or]lebling[or]invisiclue[then at random]".
+	say "[one of]a fooblitzky[or]a babel fish[or]a grue[or]a zorkmid[or]a feelie[or]an implementor[or]a lebling[or]an invisiclue[then at random]".
 	
 A fixed in place supporter called a rubber welcome mat is in west-house.  "A rubber mat saying 'Welcome to' lies by the door.". The description of the mat is "The mat says 'Welcome to' in bold letters and below that are some faded letters that you can hardly make out."
 
 The letters are part of the mat.  The description of letters is "The faded letters are hard to make out, but the first one looks slightly like a 2 or perhaps a 'Z'."
 
 Mat under is a truth state that varies.  Mat under is usually false.
-After taking, pushing, or pulling the rubber welcome mat:
-	if something (called the thingy) is on the mat:
-		say "As the mat is moved, [a thingy] falls onto the floor.";
-		move the thingy to the location;
-		change mat under to false;
-	otherwise:
-		change mat under to false;
-		continue the action.
 
-The front door is a door in west-house.  The front door is scenery. The front door is closed.  The front door is lockable and locked.  The front door is west of the Living Room and east of west-house.  The front door is not apparent.  The description of the front door is "[if the player is in west-house]The door is a heavy oak door....painted white like the rest of the house.[otherwise]The door appears to be nailed shut.  There is some odd gothic graffiti painted on the door.[end if]".
+Before taking, pushing, or pulling the rubber welcome mat:
+	say "You reach down to take the mat and notice it's been nailed to the [porch]." instead.
+
+The porch is scenery in west-house.  The description of porch is "The wooden porch is falling apart and doesn't look safe."
+
+The front door is a door in west-house.  The front door is scenery. The front door is closed.  The front door is unopenable.  The front door is west of the Living Room and east of west-house.  The front door is not apparent.  The description of the front door is "[if the player is in west-house]The door is a heavy oak door....painted white like the rest of the house.[otherwise]The door appears to be nailed shut.  There is some odd gothic graffiti painted on the door.[end if]".
 
 Before opening the front door:
 	if location is west-house:
@@ -315,77 +355,119 @@ Before opening the front door:
 	if location is living room:
 		say "Seeing that the front door is nailed shut, that is not likely to happen." instead;
 		
-Instead of going west in west-house:
+Instead of going east in west-house:
 	try opening the front door.
-	
+
+instead of entering house in west-house:
+	try opening the front door.
+
+
 	
 Section - North of House
 
 A room called north-house is northeast of west-house.  "You are facing the north side of the white house.  There is a window here.".
 north-house is in the outdoors.  The printed name of north-house is "North of House".
 
-The north window is scenery in north-house.  The description of north window is "The window is too dusty to see anything inside."
+The north-window is scenery in north-house.  The description of north-window is "The window is too dusty to see anything inside."
+Understand "window" as north-window when in north-house.
 
-Instead of opening or pulling or pushing the north window:
+Instead of opening or pulling or pushing the north-window:
 	say "You try to open the window, but it doesn't budge."
 
-Instead of searching a window:
-	try examining the window.
+Instead of attacking north-window:
+	say "You don't feel right breaking the window of someone's house."
 
-Instead of attacking the window:
-	say "You don't feel right breaking the window of someones house."
+Instead of searching north-window:
+	try examining the north-window.
+
+before going inside in north-house:
+	try entering the north-window instead.
 	
-[Instead of looking in window:
-	say "The window is too dusty to see anything inside."]
+instead of going south in north-house:
+	try opening north-window.
+	
+instead of entering north-window in north-house:
+	try opening north-window.
+	
+instead of going inside in north-house:
+	try opening north-window.
+
+instead of entering house in north-house:
+	try opening north-window.
 
 Section - South of House
 
 A room called south-house is southeast of west-house. "You are facing the south side of the white house.  There is a window here.".
 south-house is in the outdoors.  The printed name of south-house is "South of House".
 
-The south window is scenery in south-house.  The description of south window is "The window is too dusty to see anything inside."
+The south-window is scenery in south-house.  The description of south-window is "The window is too dusty to see anything inside."
+Understand "window" as south-window when in south-house.
 
-Instead of opening or pulling or pushing the south window:
+Instead of opening or pulling or pushing the south-window:
 	say "You try to open the window, but it doesn't budge."
 
-Instead of searching a window:
-	try examining the window.
+Instead of attacking south-window:
+	say "You don't feel right breaking the window of someone's house."
 
-Instead of attacking the window:
-	say "You don't feel right breaking the window of someones house."
+Instead of searching south-window:
+	try examining the south-window.
+
+before going inside in south-house:
+	try entering the south-window instead.
 	
+instead of entering house in south-house:
+	try opening south-window.
+
+instead of entering south-window in south-house:
+	try opening south-window.
+	
+before going inside in south-house:
+	try entering the south-window instead.
+
+instead of going north in south-house:
+	try opening south-window.	
+	
+
 Section - Behind House
 
-A room called behind-house is northeast of south-house.  behind-house is southeast of north-house.  "You are behind the white house.  In one corner is a window that is [if the entry window is closed]slightly ajar.  [otherwise]open.".
+A room called behind-house is northeast of south-house.  behind-house is southeast of north-house.  "You are behind the white house.  In one corner is a window that is [if the entry-window is closed]slightly ajar.  [otherwise]open.".
 
 The printed name of behind-house is "Behind the House".
 
 behind-house is in the outdoors.
 
-The entry window is a door.  The entry window is west of behind-house and east of Kitchen.  The entry window is closed and openable.  The entry window is scenery.  The description of entry window is "The window is [if the entry window is closed]slightly ajar, but not enough the squeeze through. [otherwise]open."  The entry window is not apparent.
+The entry-window is a door.  The entry-window is west of behind-house and east of Kitchen.  The entry-window is closed and openable.  The entry-window is scenery.  The description of entry-window is "The window is [if the entry-window is closed]slightly ajar, but not enough the squeeze through. [otherwise]open."  The entry-window is not apparent.  Understand "window" as entry-window when in behind-house.
 
-Check climbing the entry window: try entering the noun instead.
-Check going inside while in behind-house: try entering the entry window instead.  Check exiting while in Kitchen: try entering the entry window instead.
+Check climbing the entry-window: try entering the noun instead.
+Check going inside while location is behind-house: try entering the entry-window instead.  
+Check exiting while location is Kitchen: try entering the entry-window instead.
 
-Instead of searching the  entry window:
+Instead of searching the  entry-window:
 	say "The window is too dusty to see anything through it."
 
-before opening or pulling or pushing the entry window:  
-	now the entry window is open;
-	now the entry window is apparent;
+before opening or pulling or pushing the entry-window:  
+	now the entry-window is open;
+	now the entry-window is apparent;
 	say "You manage to open the window just enough to allow entry." instead.
 
-Report closing the entry window:  
-	now the entry window is closed;
+Report closing the entry-window:  
+	now the entry-window is closed;
 	say "The window closes." instead.
 
-Before entering the entry window: 
-	if the entry window is closed:
+before entering house in behind-house:
+	try entering entry-window instead.
+
+Before entering the entry-window: 
+	if the entry-window is closed:
 		say "The window is not open far enough to squeeze through." instead.
 
-Instead of attacking the window:
-	say "You don't feel right breaking the window of someones house.  Besides [if the entry window is closed]this window looks like it can be open[otherwise]this window is already open[end if]."
+Instead of attacking the entry-window in behind-house:
+	say "You don't feel right breaking the window of someone's house.  Besides [if the entry-window is closed]this window looks like it can be open[otherwise]this window is already open[end if]."
 
+before going inside in behind-house:
+	try entering the entry-window instead.
+	
+	
 Section - Misc
 
 The white house is a backdrop.  The white house is in west-house and north-house and south-house and behind-house.  The description of the white house is "The house is a beautiful colonial house which is painted white.  Clearly this was once a very fancy home."
@@ -408,7 +490,7 @@ Does the player mean doing something with the trap door when the trap door is no
 To say status of the trap door:
 	say "[if the trap door is open]an open[otherwise]a closed".
 	
-The hooks are a supporter in the living room.  The hooks are scenery.  "There are hooks above the glass case attached to the wall."  Understand "hook" as hooks.
+The hooks are a supporter in the living room.    "There are hooks above the glass case attached to the wall.  [if number of things on the hooks is greater than 0]Hanging on the hooks you see [the list of things on the hooks]."  Understand "hook" as hooks.
 
 Understand "hang [something preferably held] on [something]" as putting it on.
 
@@ -489,6 +571,14 @@ The table is a supporter in the kitchen.   The table is scenery. The description
 
 The wash basin is a unopenable container.  The wash basin is open.   The wash basin is scenery in the kitchen.  The description of the wash basin is "A white porcelain wash basin sits along the wall under the window.  Rust stains are splattered around the drain where water has dripped for some time."
 
+before entering the basin:
+	say "The wash basic is way to small for you to get into." instead;
+
+before switching on the basin:
+	say "You try to turn on the water in the basin, but the handles are rusted tight." instead.
+before switching off the basin:
+	say "Good thing the water is already off as the handles are rusted shut." instead.
+
 The glass bottle is a closed openable transparent container.  The bottle is in the basin.
 
 The countertop is a supporter in the kitchen.  The countertop is scenery. The description of countertop is "The marble countertop has been chipped from years of abuse."  Understand "counter" as countertop.
@@ -504,7 +594,7 @@ Check climbing the atticstairs: try entering the noun instead.
 Instead of going up in the kitchen while arrival is happening:
 	say "You start up the stairs but it is way too dark."
 	
-before going down in the kitchen while finale is not happening:
+before going down in the kitchen while studio is not visited:
 	say "Looking down the chimney, you see nothing but darkness and you don't think it would be too safe.." instead.
 
 Instead of entering the atticstairs while arrival is happening:
@@ -525,13 +615,16 @@ Part - Below the White House
 
 The dungeon is a region.
 
+Before going when in darkness:
+	say "You are too scared of the dark to move anywhere.  You always have this fear that something is going to eat you." instead.
+
 Section - Cellar
 
 The Cellar is a dark room.  The cellar is down from the trap door.  The description of cellar is "You are in a dark and damp cellar.  A narrow passageway leads north and to the south you may be able to crawl through a small opening.   To the west is a steep ramp that does not appear climbable.  Leading up is a set of old wooden stairs that end in a [if trap door is closed]closed[otherwise]open[end if] trap door."
 
 The cellar is in the dungeon.
 
-Check going west while in cellar:
+Check going west while location is cellar:
 	say "You couldn't help but to try and climb the ramp, but it is too slippery and you slide back down." instead.
 
 The ramp is a thing.  The ramp is scenery in the cellar.  The description of ramp is "It is a steep metal ramp that does not appear climbable."
@@ -549,7 +642,7 @@ Every turn when in darkness:
 	
 Section - Small Room
 
-The Small Room is a room.  The Small Room is north of the cellar.  The description of Small Room is "This walls of this small room are covered in deep grooves and old stains.  There is a small cot in one corner.  The only exit is to the south." 
+The Small Room is a dark room.  The Small Room is north of the cellar.  The description of Small Room is "This walls of this small room are covered in deep grooves and old stains.  There is a small cot in one corner.  The only exit is to the south." 
 
 The Small room is in the dungeon
 
@@ -564,7 +657,7 @@ to say cot-description:
 
 to say finding shirt:
 	if first_time of the torn shirt is false:
-		say "You approach the cot to take a look when Jenny pushes past you and grabs up a flannel shirt that is laying on top.[paragraph break]'This is the shirt, he was wearing this the day he disappeared,' Jenny cries softly as she holds the shirt close.  'He was here, but look how it's torn and covered in blood.  He must be in trouble.'  She quickly drops the shirt back on the cot and begins to cry.[paragraph break]";
+		say "You approach the cot to take a look when Jenny pushes past you and grabs the flannel shirt you see laying on top.[paragraph break]'This is the shirt he was wearing the day he disappeared,' Jenny cries softly as she holds the shirt close.  'He was here, but look how it's torn and covered in blood.  He must be in trouble.'  She quickly drops the shirt back on the cot and begins to cry.[paragraph break]";
 		now the first_time of the torn shirt is true;
 	otherwise:
 		say "This torn shirt belonged to Marcus and is bloody and torn to threads";
@@ -585,7 +678,7 @@ Grooves are scenery in the small room.  The description of grooves are "The deep
 
 Section - East of Chasm
 
-Chasm-Room is a room.  The printed name of Chasm-Room is "East of Chasm".  The chasm-room is in the dungeon.  The chasm-room is south of cellar.  The description of chasm-room is "You are on the east end of a wide chasm.  Looking down you can't make out the bottom in the dim light.  A narrow passage heads north through which you could crawl and the path you are on continues to the east."
+Chasm-Room is a dark room.  The printed name of Chasm-Room is "East of Chasm".  The chasm-room is in the dungeon.  The chasm-room is south of cellar.  The description of chasm-room is "You are on the east end of a wide chasm.  Looking down you can't make out the bottom in the dim light.  A narrow passage heads north through which you could crawl and the path you are on continues to the east."
 
 Before jumping in the chasm-room:
 	say "You may want to think twice about jumping in this close to the chasm." instead.
@@ -601,7 +694,7 @@ The chasm is scenery in the chasm-room.  The description of chasm is "Looking do
 
 Section - Gallery
 
-Gallery is a room.  The gallery is east of the chasm-room.  The gallery is in the dungeon.  The description of gallery is "You are in a small room.  Their is a doorway to the north and a pathway heads west."
+Gallery is a dark room.  The gallery is east of the chasm-room.  The gallery is in the dungeon.  The description of gallery is "You are in a small room.  Their is a doorway to the north and a pathway heads west."
 
 The painting is a thing.  The painting is in the gallery.   The initial appearance of the painting is "There is a grand painting hanging on the east wall."The description of the painting is "Despite being a large and colorful painting, there is surprisingly nothing special about it."
 
@@ -615,7 +708,7 @@ before looking behind the painting:
 		
 Section - Studio
 
-The Studio is a room.  The Studio is in the dungeon.  The studio is north of the gallery. The description of the studio is "You are in an artists studio, one that has not been used for many years, but you can still make out splatters of paint of many colors on the walls, floor and even on the ceiling.  On the north wall is a fireplace with a narrow chimney leading up."
+The Studio is a dark room.  The Studio is in the dungeon.  The studio is north of the gallery. The description of the studio is "You are in an artists studio, one that has not been used for many years, but you can still make out splatters of paint of many colors on the walls, floor and even on the ceiling.  On the north wall is a fireplace with a narrow chimney leading up."
 
 The chimney is an open unopenable door.  The chimney is scenery.  The chimney is up from the studio.  The chimney is down from the kitchen. The description of chimney is "A small chimney made out of red bricks."
 
@@ -706,8 +799,9 @@ Every turn during attack-troll:
 				else if hitpoints of the player are greater than 2:
 					say "[line break]Your wounds are getting pretty severe, you're not sure how much longer you will last.";
 			otherwise:
-				say "[line break]Darkness begins to cloud your eyes.  As you sink to your knees you see the troll-man raise his axe one more time......[paragraph break]**** You have died ****[paragraph break]Well why not, you deserve another chance,  I'll fix you up the best I can.";
+				say "[line break]Darkness begins to cloud your eyes.  As you sink to your knees you see the troll-man raise his axe one more time......[paragraph break]**** You have died ****[paragraph break]Well, why not, you deserve another chance,  I'll fix you up the best I can.";
 				now the player is in west-house;
+				now the hitpoints of the player are 7;
 		otherwise:
 			say "Luckily you are quick enough to evade his swing.".
 	
@@ -734,7 +828,7 @@ When finale begins:
 	now the sword is glowing;
 	say "As you pick up the sword, it begins to dimly glow blue.[paragraph break]";
 	say "Jenny looks at you strangely then slowly turns to face the doorway you just came through.  You follow her gaze, to see a large dark shape blocking the door.  You turn to face the door and the blue light coming from the sword grows brighter and you see a hulk of man standing there with a craze look in his eyes.[paragraph break]";
-	say "Jenny on the other hand only sees who the man used to be.[paragraph break]'Marcus,' she cries out and runs towards him as if to embrace him.  Marcus or that which used to be Marcus, reaches out and without great effort knocks her back and her unconscious body goes flying across the room to land in a heap in the corner.[paragraph break]";
+	say "Jenny on the other hand only sees who the man used to be.[paragraph break]'Marcus,' she cries out and runs towards him as if to embrace him.  Marcus, or what used to be Marcus, reaches out and without great effort knocks her back and she flys across the room to land in a heap in the corner.[paragraph break]";
 	say "The creature turns your way and only now that you notice that he carries a large bloody axe.";
 	now jenny is unconscious;
 	now jenny is not shadowing the player;
@@ -743,8 +837,8 @@ When finale begins:
 	
 
 before going east from the kitchen while finale is happening:
-	say "You climb out the window and run to get help, but it's a long way back to civilization.  After a few hours you convince the authorities to follow you out to the white house.  The police break down the front door and stream into the living room to find [bodies-found] [paragraph break]You were thankful you didn't mention the trap-door in the floor as when the house was searched, none was found.  The only items of any interest were an old broken lantern laying in a corner of the kitchen and a rusty old sword hanging on hooks above a the broken frame of a glass display case in the living room. [Paragraph break]As you leave the house wondering if you were indeed going crazy, you take a last glance back through the front door.  Your eyes fall upon the sword and through the rust, you think you see it begin to glow blue.";
-	end the game saying "You often wander back to the white house, but you never have the guts to go back inside.  But the faint blue glow is unmistakeable...is it glowing for you?  Or from the evil below."
+	say "You climb out the window and run to get help, but it's a long way back to civilization.  After a few hours you convince the authorities to follow you out to the white house.  The police break down the front door and stream into the living room to find [bodies-found] [paragraph break]You were thankful you didn't mention the trap-door in the floor as when the house was searched, none was found.  The only items of any interest were an old broken lantern laying in a corner of the kitchen and a rusty old sword hanging on hooks above the broken frame of a glass display case in the living room. [Paragraph break]As you leave the house wondering if you were indeed going crazy, you take a last glance back through the front door.  Your eyes fall upon the sword and through the rust, you think you see it begin to glow blue.";
+	end the story saying "You often wander back to the white house, but you never have the guts to go back inside.  But the faint blue glow is unmistakeable...is it glowing for you?  Or from the evil below."
 	
 To say bodies-found:
 	if the troll is unconscious:	
