@@ -132,6 +132,7 @@ title (text)  	subtable (table name)	description (text)  	used (number)  	bookpa
 	"hint"	--	"Can you find the other names of the sword?  Think of it's heritage in Tolkien and how Zork paid homage to Tolkien."
 	"hint"	--	"Did you find the Coconut of Quendor?"
 	"hint"	--	"Examine the painting, but first pay attention to room description.  This is an inside joke from Zork 1."
+	"hint"	--	"Count the paint splatters in the studio.  Another Zork inside joke."
 	
 
 
@@ -195,11 +196,6 @@ instead of jenny pulling the rug:
 instead of jenny pushing the rug:
 	try the player pushing the rug;
 	rule succeeds.
-
-
-Section - Thief
-
-The thief is a male person.
 
 Section - Troll
 
@@ -287,18 +283,13 @@ adventure is a familiar subject.
 passages are a familiar subject.
 endings are a subject.
 Marcus is a subject.
-White house is a familiar.
+The white house is a familiar.
 find him is a subject.  Understand "find marcus" as find him.
 dreams are a familiar subject.  Understand "dream" as dreams.
 
 before saying hello to Jenny while jenny is unconscious:
 	say "You yell at her to try and wake her up, but there is no response." instead.
 	
-[before saying hello to jenny  when the greeting type is implicit for the first time:
-	say "Hey Jenny.";
-	now jenny is the interlocutor;
-	try listing suggested topics instead.]
-
 default tell response for jenny:
 	say "You begin to tell Jenny, but she doesn't seem to be paying any attention to you at the moment.";
 	
@@ -374,7 +365,8 @@ Chapter - Items
 
 Section  - Coconut
 
-The coconut is a thing.  The description of coconut is "The coconut appears to be over-ripe.  In fact, the odor is terrible, it must be centuries over ripe.  The shell is still intact and is very hard."
+The coconut is an edible thing.  The description of coconut is "The coconut appears to be over-ripe.  In fact, the odor is terrible, it must be centuries over ripe.  The shell is still intact and is very hard."
+
 
 Instead of smelling the coconut:
 	say "[smell-coconut]";
@@ -382,17 +374,63 @@ Instead of smelling the coconut:
 to say smell-coconut:
 	say "You catch a whiff of the coconut and it smells like a dead corpse that has been laying in the hot sun for too long.  You begin to feel a bit nauseous."
 
+before smelling:
+	if the coconut can be touched by the player:
+		say "[smell-coconut]" instead.
 	
-instead of smelling while the player carries the coconut:
+[instead of smelling while the player carries the coconut:
 	try smelling the coconut.
-	
-[before smelling while the coconut is seen:
-	if the coconut is in scope:
-		say "[smell-coconut]";
 ]
+
 instead of eating the coconut:
 	say "While you normally enjoy coconut, the smell of this one is too much to overcome."
+
+
+Chapter - Misc
+
+Instead of attacking a closed door:
+	say "You bang on [the noun], but it does not open."
+
+Understand "knock on [something]" or "knock [something]" as attacking.
+
+Understand the commands "bang" and "tap" and "rap" as "knock".
+
+instead of looking under something carried by the player:
+	say "Since you are holding [the noun]  you think you would have noticed if something was underneath it."
+		
+A floor is a kind of thing. 
+Before putting something on a floor: 
+	try dropping the noun instead.  
+A floor is always scenery. 
+
+Instead of looking under a floor: 
+	say "Nice idea if you can figure out how." Understand "floor" or "ground" as a floor.
+
+Some generic surroundings are backdrop. It is everywhere. Understand "walls" or "wall" or "ceiling" or "ground" or "area" or "room" or "here" as the generic surroundings. Understand "floor" or "floorboard" or "floorboards" as the generic surroundings when the location is not floored. 
+
+Before putting something on the generic surroundings: 
+	try dropping the noun instead. 
+
+Instead of examining the generic surroundings: 
+	say "You take another look around."; 
+	try looking. 
 	
+Instead of touching the generic surroundings: 
+	say "You encounter nothing extraordinary." 
+
+Instead of touching the generic surroundings when in darkness: 
+	say "You try feeling your way around, but the space you are in is too large to allow you to navigate by touch."
+
+Definition: a room is floored if it contains a floor.
+
+Understand "use [a closed openable container]" as opening. Understand "use [an open openable container]" as closing.
+Understand "use [an edible thing]" as eating.
+
+Understand "use [a switched off device]" as switching on.
+Understand "use [a switched on device]" as switching off.
+Understand "use [something]" as using. Using is an action applying to one thing. Carry out using: say "You will have to be more specific about what you want to do."
+Understand "use [a door]" as opening. Understand "use [an open door]" as entering.
+
 
 Part - Outdoors Around the House
 
@@ -400,7 +438,7 @@ The outdoors is a region.
 
 instead of going nowhere in outdoors:
 	if finale is happening:
-		say "It's dark, but you overcome your fear in the hopes you can save Jenny.  After a few hours you convince the authorities to follow you out to the white house.  The police break down the front door and stream into the living room to find [bodies-found] [paragraph break]You were thankful you didn't mention the trap-door in the floor as when the house was searched, none was found.  The only items of any interest were an old broken lantern laying in a corner of the kitchen and a rusty old sword hanging on hooks above the broken frame of a glass display case in the living room. [Paragraph break]As you leave the house wondering if you were indeed going crazy, you take a last glance back through the front door.  Your eyes fall upon the sword and through the rust, you think you see it begin to glow blue.";
+		say "It's dark, but you overcome your fear in the hopes you can save Jenny.  After a few hours you convince the authorities to follow you out to the white house.  The police break down the front door and stream into the living room to find [bodies-found] [paragraph break]You were thankful you didn't mention the trap-door in the floor as when the house was searched, none was found.  The only items of any interest were an old broken lantern laying in a corner of the kitchen and a rusty old sword hanging on hooks above the broken frame of a glass display case in the living room. [Paragraph break]As you leave the house wondering if you were indeed going crazy or if this was all just a dream, you take a last glance back through the front door.  Your eyes fall upon the sword and through the rust, you think you see it begin to glow blue.";
 		end the story saying "You often wander back to the white house, but you never have the guts to go back inside.  But the faint blue glow is unmistakeable...is it glowing for you?  Or from the evil below.";
 	otherwise:
 		say "You just got here and it's getting too dark to make your way through the field and into the woods again."
@@ -423,6 +461,7 @@ The small mailbox is a container in west-house.  The mailbox is fixed in place, 
 Understand "box" and "mail box" and "mail-box" as the mailbox.  The description of mailbox is "The small mailbox is [if mailbox is open]open[otherwise]closed[end if]."
 
 The pamphlet is in the mailbox.  The description of pamphlet is "It's a copy of a newsletter called 'The Status Line,' whatever that is.  [paragraph break]You scan the newsletter, but none of it really makes sense.  What is [random-infocom-term] anyway?".
+Understand "mail" or "letter" or "newsletter" as pamphlet.
 
 To say  random-infocom-term:
 	say "[one of]a fooblitzky[or]a babel fish[or]a grue[or]a zorkmid[or]a feelie[or]an implementor[or]a lebling[or]an invisiclue[then at random]".
@@ -451,6 +490,10 @@ Instead of going east in west-house:
 
 instead of entering house in west-house:
 	try opening the front door.
+
+instead of looking under a door:
+	say "There is no room between the floor and [the noun]."
+	
 
 
 	
@@ -816,7 +859,8 @@ Section - Studio
 
 The Studio is a dark room.  The Studio is in the dungeon.  The studio is north of the gallery. The description of the studio is "You are in an artists studio, one that has not been used for many years, but you can still make out splatters of paint of many colors on the walls, floor and even on the ceiling.  On the north wall is a fireplace with a narrow chimney leading up."
 
-The chimney is an open unopenable door.  The chimney is scenery.  The chimney is up from the studio.  The chimney is down from the kitchen. The description of chimney is "A small chimney made out of red bricks."
+The chimney is an open unopenable door.  The chimney is scenery.  The chimney is up from the studio.  The chimney is down from the kitchen. The description of chimney is "A small chimney made out of red bricks."  
+Understand "fireplace" as chimney.
 
 Understand "count splatters" as a mistake ("There are 69 different colors of paint on the wall.")
 
@@ -943,7 +987,7 @@ When finale begins:
 	
 
 before going east from the kitchen while finale is happening:
-	say "You climb out the window and run to get help, but it's a long way back to civilization.  After a few hours you convince the authorities to follow you out to the white house.  The police break down the front door and stream into the living room to find [bodies-found] [paragraph break]You were thankful you didn't mention the trap-door in the floor as when the house was searched, none was found.  The only items of any interest were an old broken lantern laying in a corner of the kitchen and a rusty old sword hanging on hooks above the broken frame of a glass display case in the living room. [Paragraph break]As you leave the house wondering if you were indeed going crazy, you take a last glance back through the front door.  Your eyes fall upon the sword and through the rust, you think you see it begin to glow blue.";
+	say "You climb out the window and run to get help, but it's a long way back to civilization.  After a few hours you convince the authorities to follow you out to the white house.  The police break down the front door and stream into the living room to find [bodies-found] [paragraph break]You were thankful you didn't mention the trap-door in the floor as when the house was searched, none was found.  The only items of any interest were an old broken lantern laying in a corner of the kitchen and a rusty old sword hanging on hooks above the broken frame of a glass display case in the living room. [Paragraph break]As you leave the house wondering if you were indeed going crazy or if this is all just a dream, you take a last glance back through the front door.  Your eyes fall upon the sword and through the rust, you think you see it begin to glow blue.";
 	end the story saying "You often wander back to the white house, but you never have the guts to go back inside.  But the faint blue glow is unmistakeable...is it glowing for you?  Or from the evil below."
 	
 To say bodies-found:
