@@ -1,4 +1,4 @@
-"White Houses" by Mr Stamp
+"White Houses" by Mr Stamp (Jason Lautzenheiser)
 
 [Include Locksmith by Emily Short.]
 Include Conversation Framework by Eric Eve.
@@ -82,7 +82,7 @@ Section - Help Tables
 
 table of help contents
 title (text)  	subtable (table name)	description (text)  	used (number)  	bookpage (number)  	localpage (number)  
-  	"Credits"	--  	"'[bold type]White Houses © 2014 by Mr. Stamp[roman type] is a Shufflecomp 2014 entry.  It is very loosly based on the song 'White Houses' by Vanessa Carlton.  I really mean very loosly, in fact little from the song was used for inspiration other than the title and some NPC information.[paragraph break]During the competition, we are to keep our identities secret, so I can't tell you who I really am.  Afterwards, you'll be able to find out easy enough.  Thanks to the many testers that helped me out, but I'll wait until after the competition to reveal who those were as well.[paragraph break]I hope you enjoy this short piece as much as I enjoyed creating it."  
+  	"Credits"	--  	"'[bold type]White Houses © 2014 by Mr. Stamp (Jason Lautzenheiser)[roman type] is a Shufflecomp 2014 entry.  It is very loosly based on the song 'White Houses' by Vanessa Carlton.  I really mean very loosly, in fact little from the song was used for inspiration other than the title and some NPC information.[paragraph break]During the competition, we kept our identities secret, but now that it's over, I can reveal that I'm really Jason Lautzenheiser.  Special thanks to Andrew Shultz, Peter Orme, Carolyn VanEseltine, Hanon Ondricek, and Marshal Tenner Winter for their many transcripts, suggestions, tips and education that they provided during the creation of this game.[paragraph break]I hope you enjoy this short piece as much as I enjoyed creating it."  
   	"What is this game about?"	--	"The term white house brings out many strong memories for many veteran interactive fiction gamers.  This is my attempt at a brief homage to that same white house.[paragraph break]When thinking about what you need to do in this game, look back at the roots of this game and you'll often find the answer to what to do next or it will help to explain something you see.  I tried to include some inside jokes that might be better understood if you look back."  
 	"What game is this based on?"	--	"Well if you are new to the genre or to interactive fiction in general perhaps you don't know.  Do a search on Zork and you'll find the inspiration that I used to create this game."
 	"How do I get into the house?"	table of hinting	"So you want in....well there is a way in, though it may not be that obvious at first."
