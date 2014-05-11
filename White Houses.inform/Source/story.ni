@@ -1,6 +1,6 @@
 "White Houses" by Mr Stamp
 
-Include Locksmith by Emily Short.
+[Include Locksmith by Emily Short.]
 Include Conversation Framework by Eric Eve.
 Include Conversation Responses by Eric Eve.
 Include Conversation Suggestions by Eric Eve.
@@ -8,9 +8,12 @@ Include Conversational Defaults by Eric Eve.
 Include Exit Lister by Eric Eve.
 Include Complex Listing by Emily Short.
 Include Simple Followers by Emily Short.
+Include Menus by Wade Clarke.
+
 
 The release number is 3.
 The story creation year is 2014.
+The story genre is "Fantasy".
 
 use American dialect.
 
@@ -23,19 +26,21 @@ Use no scoring.
 A thing can be a weapon.  A thing is usually not a weapon.
 A person can be conscious or unconscious.  A person is usually conscious.
 A person has  a number called hitpoints.  The hitpoints of a person is usually 10.
+A person has a number called hint_num.  
 
 The player is a female.  The description of the player is "You've always thought of yourself as rather plain.  And your demeanor shows your lack of self-confidence."
 
 The player has a number called noises_heard.  The noises_heard of the player is usually 0.
-The hitpoints of the player is 7.
+The hitpoints of the player is 8.
 
 When play begins:
 	say "Jenny called you late and ask to meet you out here in the middle of nowhere.  You've never been this far in the forest before and you never knew this white house was out here.  She said she had something important to tell you and she never joked about those kinds of things so you felt it must be important...so you came.....against your best judgement, but you've always been a good friend.....you just hope you don't regret it."
 
-Understand "about" or "credits" or "credit" or "info" as abouting.
+[Understand "about" or "credits" or "credit" or "info" as abouting.
 Abouting is an action out of world.
 Carry out abouting:
 	say "[bold type]White Houses © 2014 by Mr. Stamp[roman type] is a Shufflecomp 2014 entry.  It is very loosly based on the song 'White Houses' by Vanessa Carlton.  I really mean very loosly, in fact little from the song was used for inspiration other than the title and some NPC information.[paragraph break]During the competition, we are to keep our identities secret, so I can't tell you who I really am.  Afterwards, you'll be able to find out easy enough.  Thanks to the many testers that helped me out, but I'll wait until after the competition to reveal who those were as well.[paragraph break]I hope you enjoy this short piece as much as I enjoyed creating it."
+]
 
 Before listing nondescript items: 
 	if the troll is marked for listing:
@@ -50,7 +55,7 @@ Before listing nondescript items:
 			say "Jenny lies in a heap on the ground.  She appears to still be breathing, but just barely.[line break]";
 		otherwise:
 			say "Jenny stands close to you.[line break][line break]";
-		
+
 
 Chapter - Mistakes
 
@@ -61,6 +66,77 @@ Understand "chomp"  as a mistake("That's just silly.").
 understand "back" and "go back" as a mistake("You vaguely remember some saying about a plow on your back and some kingdom....or something like that.").
 Understand "zork"  as a mistake("Hahaha....you wish.").
 
+
+Chapter - Help
+
+ asking for help is an action out of world applying to nothing.
+
+Understand "help" or "hint" or "about" or "credits" or "credit" or "info" as asking for help.
+
+carry out asking for help:
+	carry out the displaying activity;
+	clear the screen;
+	try looking.
+
+Section - Help Tables
+
+table of help contents
+title (text)  	subtable (table name)	description (text)  	used (number)  	bookpage (number)  	localpage (number)  
+  	"Credits"	--  	"'[bold type]White Houses © 2014 by Mr. Stamp[roman type] is a Shufflecomp 2014 entry.  It is very loosly based on the song 'White Houses' by Vanessa Carlton.  I really mean very loosly, in fact little from the song was used for inspiration other than the title and some NPC information.[paragraph break]During the competition, we are to keep our identities secret, so I can't tell you who I really am.  Afterwards, you'll be able to find out easy enough.  Thanks to the many testers that helped me out, but I'll wait until after the competition to reveal who those were as well.[paragraph break]I hope you enjoy this short piece as much as I enjoyed creating it."  
+  	"What is this game about?"	--	"The term white house brings out many strong memories for many veteran interactive fiction gamers.  This is my attempt at a brief homage to that same white house.[paragraph break]When thinking about what you need to do in this game, look back at the roots of this game and you'll often find the answer to what to do next or it will help to explain something you see.  I tried to include some inside jokes that might be better understood if you look back."  
+	"What game is this based on?"	--	"Well if you are new to the genre or to interactive fiction in general perhaps you don't know.  Do a search on Zork and you'll find the inspiration that I used to create this game."
+	"How do I get into the house?"	table of hinting	"So you want in....well there is a way in, though it may not be that obvious at first."
+	"hint"	--	"You need to explore around the outside of the house first."
+	"hint"	--	"You'll find one window is not the same as the others."
+	"hint"	--	"Behind the house, you can open the window."
+	"What do I do once I'm in the house?"	table of hinting	"Now that you're in, now is your chance to look around."
+	"hint"	--	"There are not many rooms you can get to yet."	
+	"hint"	--	"You may need to find your friends."
+	"hint"	--	"Maybe they will find you first."
+	"hint"	--	"Wait around, Jenny will eventually find you."
+	"hint"	--	"But then she heads off again."
+	"hint"	--	"Go to the attic with her."
+	"So Jenny and I are together.  Now what?"	table of hinting	"Well you've been found.  Now Jenny is in the attic."
+	"hint"	--	"You might want to try talking."
+	"hint"	--	"Say hello to get started."
+	"Can I get below the house?"	table of hinting	"Yes, there are a couple ways to get below the house."
+	"hint"	--	"The chimney in the kitchen seems obvious, but you can't use that yet."
+	"hint"	--	"There is something hidden in the living room."
+	"hint"	--	"Think Zork 1."
+	"hint"	--	"Look under rug."
+	"hint"	--	"But you still can't open the trap door."
+	"hint"	--	"You'll have to move the rug first."
+	"hint"	-- 	"It's too heavy to move by yourself."
+	"hint"	-- 	"If Jenny is in the room with you, she can help."
+	"It's dark.  What do I do?"	table of hinting	"Well, you'll need some light."
+	"hint"	--	"There is something in the living room you can pick up."
+	"hint"	--	"The lantern can provide light if you turn it on."
+	"hint"	--	"Don't worry if you forget it.  Jenny will bring it along."
+	"OK.  I'm down here, now what?"	table of hinting	"Explore, you'll learn more about the story."
+	"I've got the sword, now what?"	table of hinting	"So you picked up the sword.  A drastic turn in the story has occurred."
+	"hint"	--	"Marcus has appeared and knocked out Jenny."
+	"hint"	--	"You need to get help."
+	"hint"	--	"But he won't let you."
+	"hint"	--	"There are three ways to get around him."
+	"hint"	--	"You can escape up the chimney, but you'll have to give up your sword."
+	"hint"	--	"You can attack Marcus and kill him."
+	"hint"	--	"You can die."
+	"hint"	--	"Don't worry, you'll come back above ground."
+	"What do I do next?"	table of hinting	"Well you got past Marcus in one of the three ways."
+	"hint"	--	"Now just leave the house."
+	"hint"	--	"If you died, just leave the area around the house."
+	"Amusing Actions"	table of hinting	"There are a lot of different things you can try.   Most have their roots in Zork 1."
+	"hint"	--	"XYZZY - of course I added that in there."
+	"hint"	--	"Try throwing items at Marcus.  Try it when he is unconscious as well."
+	"hint"	--	"Read the pamphlet in the mailbox multiple times."
+	"hint"	--	"Can you find the other names of the sword?  Think of it's heritage in Tolkien and how Zork paid homage to Tolkien."
+	"hint"	--	"Did you find the Coconut of Quendor?"
+	"hint"	--	"Examine the painting, but first pay attention to room description.  This is an inside joke from Zork 1."
+	
+
+
+
+	
 Chapter - Actions
 
 Understand "read [something]" as reading. Reading is an action applying to one thing, requiring light.
@@ -109,6 +185,18 @@ before giving something to jenny while jenny is unconscious:
 The ask-suggestions are {self-suggestion, adventure, house}.
 Understand "herself/Jen" as Jenny.
 
+Persuasion rule for asking jenny to try pulling the rug: persuasion succeeds.
+Persuasion rule for asking jenny to try pushing the rug: persuasion succeeds.
+
+instead of jenny pulling the rug:
+	try the player pulling the rug;
+	rule succeeds.
+
+instead of jenny pushing the rug:
+	try the player pushing the rug;
+	rule succeeds.
+
+
 Section - Thief
 
 The thief is a male person.
@@ -122,32 +210,35 @@ The troll has a number called attack-count.  The attack-count of the troll is 0.
 Does the player mean attacking the troll:  it is likely.
 
 instead of attacking the troll:
-	now the attack-count of the troll is 1;
-	if the player is carrying the sword:
-		if a random chance of 2 in 3 succeeds:
-			say "You swing the sword at the trollish creature rather clumsily, but you still manage to hit him [location-of-hit] before he manages to get his axe up to deflect your swing";
-			if a random chance of 1 in 6 succeeds:
-				say "....and he falls unconscious to the ground.";
-				now the troll is unconscious;
-			otherwise:
-				say ".  ";
-				let hitvalue be a random number between 1 and 5;
-				now the hitpoints of the troll are the hitpoints of the troll minus hitvalue;
-				if the hitpoints of the troll are greater than 0:
-					if the hitpoints of the troll are greater than 8:
-						say "He glances down at his wound and then looks back at you with a small chuckle.";
-					else if hitpoints of the troll are greater than 5:
-						say "The blood is starting to drip around him on the floor and he staggers slightly.";
-					else if the hitpoints of the troll are greater than 2:
-						say "He looks very weak now.";
-				otherwise:
-					say "He slowly sinks to his knees and then plops over on his back unconscious.";
-					now the troll is unconscious;
-				say "[paragraph break]";
-		otherwise:
-			say "You swing wildly, completely missing the trollish man.";
+	if the troll is unconscious:
+		say "Lying there he looks so much like Marcus you can't bring yourself to attack him anymore.";
 	otherwise:
-		say "You [one of]swing wildly[or]kick the troll[or]spit in his general direction[then at random] without much effect."
+		now the attack-count of the troll is 1;
+		if the player is carrying the sword:
+			if a random chance of 2 in 3 succeeds:
+				say "You swing the sword at the trollish creature rather clumsily, but you still manage to hit him [location-of-hit] before he manages to get his axe up to deflect your swing";
+				if a random chance of 1 in 6 succeeds:
+					say "....and he falls unconscious to the ground.";
+					now the troll is unconscious;
+				otherwise:
+					say ".  ";
+					let hitvalue be a random number between 1 and 5;
+					now the hitpoints of the troll are the hitpoints of the troll minus hitvalue;
+					if the hitpoints of the troll are greater than 0:
+						if the hitpoints of the troll are greater than 8:
+							say "He glances down at his wound and then looks back at you with a small chuckle.";
+						else if hitpoints of the troll are greater than 5:
+							say "The blood is starting to drip around him on the floor and he staggers slightly.";
+						else if the hitpoints of the troll are greater than 2:
+							say "He looks very weak now.";
+					otherwise:
+						say "He slowly sinks to his knees and then plops over on his back unconscious.";
+						now the troll is unconscious;
+					say "[paragraph break]";
+			otherwise:
+				say "You swing wildly, completely missing the trollish man.";
+		otherwise:
+			say "You [one of]swing wildly[or]kick the troll[or]spit in his general direction[then at random] without much effect."
 		
 to say location-of-hit:
 	say "[one of]in the leg[or]across the forehead[or]on the arm[or]in the crotch[or]on the knee[or]under the chin[then at random]".
@@ -520,6 +611,9 @@ Check taking the rug:
 	say "The rug is too heavy to lift." instead.
 
 Before pushing or pulling the rug: 
+	if rug is IMoved:
+		say "You've already moved the rug out of the way.";
+		stop the action;
 	if jenny is in the location:
 		say "'Jenny, help me move this rug.'[paragraph break]The two of you reach down and with great effort, move the rug to one side of the room.  With the rug moved, the dusty cover of a closed trap door is revealed.";
 		now the trap door is revealed;
@@ -591,14 +685,23 @@ The atticstairs is a door.  The atticstairs are open and not openable.  The atti
 Understand "attic stairs" or "stairs" as atticstairs.
 Check climbing the atticstairs: try entering the noun instead.
 
-Instead of going up in the kitchen while arrival is happening:
-	say "You start up the stairs but it is way too dark."
+before of going up in the kitchen while arrival is happening:
+	if player is not carrying the lantern:
+		say "You start up the stairs but it is way too dark." instead;
+	otherwise:
+		if the lantern is not lit:
+			say "You start up the stairs but it is way too dark." instead;
+		
 	
 before going down in the kitchen while studio is not visited:
 	say "Looking down the chimney, you see nothing but darkness and you don't think it would be too safe.." instead.
 
-Instead of entering the atticstairs while arrival is happening:
-	say "You start to climb the stairs but it is much too dark up there."
+before of entering the atticstairs while arrival is happening:
+	if player is not carrying the lantern:
+		say "You start to climb the stairs but it is much too dark up there." instead;
+	otherwise:
+		if the lantern is not lit:
+			say "You start up the stairs but it is way too dark." instead;
 
 Before printing a locale paragraph about a supporter (called item): 
 	now every thing on the item is mentioned.
@@ -609,6 +712,9 @@ The Attic is a room.  The attic is up from the atticstairs.  The description of 
 The attic is in the indoors.
 
 The cobwebs are scenery in the attic.  The description of cobwebs is "You really don't like spiders and the thought of what might be crawling around in this attic is enough to keep you from looking too closely."
+
+Before going nowhere in the attic:
+	say "You can only go back down." instead.
 
 
 Part - Below the White House
@@ -801,7 +907,7 @@ Every turn during attack-troll:
 			otherwise:
 				say "[line break]Darkness begins to cloud your eyes.  As you sink to your knees you see the troll-man raise his axe one more time......[paragraph break]**** You have died ****[paragraph break]Well, why not, you deserve another chance,  I'll fix you up the best I can.";
 				now the player is in west-house;
-				now the hitpoints of the player are 7;
+				now the hitpoints of the player are 8;
 		otherwise:
 			say "Luckily you are quick enough to evade his swing.".
 	
