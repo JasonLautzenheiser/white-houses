@@ -1,6 +1,5 @@
 "White Houses" by Mr Stamp (Jason Lautzenheiser)
 
-[Include Locksmith by Emily Short.]
 Include Conversation Framework by Eric Eve.
 Include Conversation Responses by Eric Eve.
 Include Conversation Suggestions by Eric Eve.
@@ -133,7 +132,6 @@ title (text)  	subtable (table name)	description (text)  	used (number)  	bookpa
 	"hint"	--	"Did you find the Coconut of Quendor?"
 	"hint"	--	"Examine the painting, but first pay attention to room description.  This is an inside joke from Zork 1."
 	"hint"	--	"Count the paint splatters in the studio.  Another Zork inside joke."
-	
 
 
 
@@ -146,11 +144,12 @@ Chapter - Kinds
 
 Section - Secret Door
 
-To print the you can't go message:
+[To print the you can't go message:
 	(- L__M(##Go, 2, 0); -).
 
 To print the you can't see message:
 	(- L__M(##Miscellany, 30, 0); -).
+]
 	
 A secret door is a kind of door.  
 A secret door can be revealed or unrevealed.
@@ -159,13 +158,14 @@ A secret door is scenery.
 A secret door is closed.
 
 Before going through a secret door which is unrevealed:
-	print the you can't go message instead.
+	say "[text of can't go that way rule response (A)][paragraph break]" instead.
 
 Before doing something to a secret door which is unrevealed:
-	print the you can't see message instead.
+	say "[text of parser error internal rule response (E)][paragraph break]" instead.
 	
 Before doing something when a secret door is the second noun and the second noun is unrevealed:
-	print the you can't see message instead.
+	say "[text of parser error internal rule response (E)][paragraph break]" instead.
+
 
 Chapter - Characters
 
@@ -183,7 +183,6 @@ before giving something to jenny while jenny is unconscious:
 	otherwise:
 		say "You are not carrying [the noun], so giving it to Jenny doesn't seem like an option."
 
-The ask-suggestions are {self-suggestion, adventure, house}.
 Understand "herself/Jen" as Jenny.
 
 Persuasion rule for asking jenny to try pulling the rug: persuasion succeeds.
@@ -256,7 +255,8 @@ before throwing something at the troll:
 			move the noun to the location instead;
 		otherwise:
 			say "and not being rather discriminating, eats it whole.";
-			remove the noun from play instead.
+			now the noun is off-stage instead.
+[			remove the noun from play instead.]
 
 Before giving something to the troll:
 	say "Not wanting to get too close to him, you toss [the noun] at the troll.";
@@ -286,6 +286,8 @@ Marcus is a subject.
 The white house is a familiar.
 find him is a subject.  Understand "find marcus" as find him.
 dreams are a familiar subject.  Understand "dream" as dreams.
+
+The ask-suggestions of jenny are {self-suggestion, adventure, house}.
 
 before saying hello to Jenny while jenny is unconscious:
 	say "You yell at her to try and wake her up, but there is no response." instead.
@@ -344,6 +346,7 @@ after quizzing jenny about endings:
 	
 to say rush-out:
 	say "[if location is the attic][paragraph break]She stands up and looks anxious to begin looking for Marcus[end if]"
+
 	
 Chapter - Underlying
 
@@ -503,7 +506,7 @@ A room called north-house is northeast of west-house.  "You are facing the north
 north-house is in the outdoors.  The printed name of north-house is "North of House".
 
 The north-window is scenery in north-house.  The description of north-window is "The window is too dusty to see anything inside."
-Understand "window" as north-window when in north-house.
+Understand "window" as north-window when location is north-house.
 
 Instead of opening or pulling or pushing the north-window:
 	say "You try to open the window, but it doesn't budge."
@@ -535,7 +538,7 @@ A room called south-house is southeast of west-house. "You are facing the south 
 south-house is in the outdoors.  The printed name of south-house is "South of House".
 
 The south-window is scenery in south-house.  The description of south-window is "The window is too dusty to see anything inside."
-Understand "window" as south-window when in south-house.
+Understand "window" as south-window when location is south-house.
 
 Instead of opening or pulling or pushing the south-window:
 	say "You try to open the window, but it doesn't budge."
@@ -570,7 +573,7 @@ The printed name of behind-house is "Behind the House".
 
 behind-house is in the outdoors.
 
-The entry-window is a door.  The entry-window is west of behind-house and east of Kitchen.  The entry-window is closed and openable.  The entry-window is scenery.  The description of entry-window is "The window is [if the entry-window is closed]slightly ajar, but not enough the squeeze through. [otherwise]open."  The entry-window is not apparent.  Understand "window" as entry-window when in behind-house.
+The entry-window is a door.  The entry-window is west of behind-house and east of Kitchen.  The entry-window is closed and openable.  The entry-window is scenery.  The description of entry-window is "The window is [if the entry-window is closed]slightly ajar, but not enough the squeeze through. [otherwise]open."  The entry-window is not apparent.  Understand "window" as entry-window when location is behind-house.
 
 Check climbing the entry-window: try entering the noun instead.
 Check going inside while location is behind-house: try entering the entry-window instead.  
@@ -668,6 +671,8 @@ Before pushing or pulling the rug:
 		stop the action.
 		
 Before opening the trap door:
+	if the trap door is unrevealed:
+		say "[text of parser error internal rule response (E)][paragraph break]" instead;
 	if the rug is NotMoved:
 		say "You can't open the trapdoor with the rug on top of it." instead;
 	
