@@ -9,8 +9,14 @@ Include Complex Listing by Emily Short.
 Include Simple Followers by Emily Short.
 Include Menus by Wade Clarke.
 
+Book  - Not for release
 
-The release number is 3.
+Include Object Response Tests by Juhana Leinonen.
+Include Property Checking by Emily Short.
+
+Book - Game
+
+The release number is 4.
 The story creation year is 2014.
 The story genre is "Fantasy".
 
@@ -139,6 +145,7 @@ title (text)  	subtable (table name)	description (text)  	used (number)  	bookpa
 Chapter - Actions
 
 Understand "read [something]" as reading. Reading is an action applying to one thing, requiring light.
+
 
 Chapter - Kinds
 
@@ -343,6 +350,7 @@ after quizzing jenny about dreams:
 after quizzing jenny about endings:
 	say "[remove endings ask suggestion]After a long silence, you ask; 'Jenny, what about the ending?'[paragraph break]Jenny looks up at you startled as if she has just seen you for the first time.  'We have to find him....he[']s alive, I know it.'[rush-out].";
 	reset the interlocutor.
+
 	
 to say rush-out:
 	say "[if location is the attic][paragraph break]She stands up and looks anxious to begin looking for Marcus[end if]"
@@ -497,7 +505,8 @@ instead of entering house in west-house:
 instead of looking under a door:
 	say "There is no room between the floor and [the noun]."
 	
-
+instead of listening when location is west-house:
+	say "You hear nothing."
 
 	
 Section - North of House
@@ -621,8 +630,13 @@ The Living Room is a room.  The living room is in the indoors.  The description 
 
 Graffiti is a part of the front door.  The description of graffiti is "[if the player is in the living room]You can't make out the language the graffiti is written in.[otherwise]You can't see any such thing.[end if]"
 
-Down from the living room is a secret door called the trap door.  The trap door is not apparent.  
+Down from the living room is a secret door called the trap door.  The trap door is not apparent.  The description of trap door is "The small wooden trap door has an small iron ring that you can use to open it."  Understand "ring" as trap door.
+
+Instead of pulling the trap door, try opening the trap door instead.
+Instead of pushing the trap door, say  "The door opens up.  You can't push it."
+
 Does the player mean doing something with the trap door when the trap door is not apparent: it is very unlikely.
+Does the player mean doing something with the trap door when the trap door is not unrevealed: it is likely.
 
 To say status of the trap door:
 	say "[if the trap door is open]an open[otherwise]a closed".
@@ -669,6 +683,8 @@ Before pushing or pulling the rug:
 	otherwise:
 		say "You strain to move the rug, but it is much too heavy for you to move by yourself.  If you could get someone else to help, you may get it to move." instead;
 		stop the action.
+		
+
 		
 Before opening the trap door:
 	if the trap door is unrevealed:
@@ -875,7 +891,7 @@ Understand "count colors" as a mistake ("There are 69 different colors of paint 
 
 The paint is scenery in the studio.  The description of paint is "The paint is splatter all over the room;  floors, walls, ceiling....everywhere."  Understand "colors/splatter/color/splatters" as paint.
 
-The sword is a thing.  The initial appearance of the sword is "There is a sword leaning in the northeast corner of the room."  The sword is a weapon.  The sword is in the studio.  The description of sword is "The sword is [first time]surprisingly [only]clean and shiny[if sword is in studio and sword is not carried by the player], despite everything else around it being covered in dust[end if]. It is very ornate, like something you'd expect to see out of Tolkien.[if the sword is glowing]  The sword is glowing blue.[end if]"
+The sword is a thing.  The initial appearance of the sword is "There is a sword leaning in the northeast corner of the room."  The sword is a weapon.  The sword is in the studio.  The description of sword is "The sword is [one of]surprisingly [or][stopping]clean and shiny[if sword is in studio and sword is not carried by the player], despite everything else around it being covered in dust[end if]. It is very ornate, like something you'd expect to see out of Tolkien.[if the sword is glowing]  The sword is glowing blue.[end if]"
 
 The sword can be glowing or dim.  The sword is dim.
 
