@@ -9,14 +9,15 @@ Include Complex Listing by Emily Short.
 Include Simple Followers by Emily Short.
 Include Menus by Wade Clarke.
 
-Book  - Not for release
 
-Include Object Response Tests by Juhana Leinonen.
-Include Property Checking by Emily Short.
+Volume  - Not for release
 
-Book - Game
+[Include Object Response Tests by Juhana Leinonen.
+Include Property Checking by Emily Short.]
 
-The release number is 4.
+Volume - Game
+
+The release number is 2.
 The story creation year is 2014.
 The story genre is "Fantasy".
 
@@ -24,7 +25,7 @@ use American dialect.
 
 [Use no deprecated features.]
 
-Part - Setup
+Book - Setup
 
 Use no scoring.
 
@@ -39,8 +40,18 @@ The player has a number called noises_heard.  The noises_heard of the player is 
 The hitpoints of the player is 8.
 
 When play begins:
-	say "Jenny called you late and ask to meet you out here in the middle of nowhere.  You've never been this far in the forest before and you never knew this white house was out here.  She said she had something important to tell you and she never joked about those kinds of things so you felt it must be important...so you came.....against your best judgement, but you've always been a good friend.....you just hope you don't regret it."
+	say "Jenny called you late and asked to meet you out here in the middle of nowhere.  You've never been this far in the forest before and you never knew this white house was out here.  She said she had something important to tell you and she never joked about those kinds of things so you felt it must be important...so you came.....against your best judgement, but you've always been a good friend.....you just hope you don't regret it."
 
+Report requesting the story file version:
+	say "[get-story-version]".
+	
+After printing the banner text:
+	say "[get-story-version]".
+
+To say get-story-version:
+	say "Story version: 1.1[line break]".
+	
+	
 [Understand "about" or "credits" or "credit" or "info" as abouting.
 Abouting is an action out of world.
 Carry out abouting:
@@ -62,7 +73,7 @@ Before listing nondescript items:
 			say "Jenny stands close to you.[line break][line break]";
 
 
-Chapter - Mistakes
+Part - Mistakes
 
 Understand "xyzzy" and "PLUGH" as a mistake ("You hear a noise in the distance.  Sounds like someone just called you a fool.").
 Understand "win" and "winnage" as a mistake ("Sure you'd like that wouldn't you.").
@@ -72,18 +83,18 @@ understand "back" and "go back" as a mistake("You vaguely remember some saying a
 Understand "zork"  as a mistake("Hahaha....you wish.").
 
 
-Chapter - Help
+Part - Help
 
  asking for help is an action out of world applying to nothing.
 
-Understand "help" or "hint" or "about" or "credits" or "credit" or "info" as asking for help.
+Understand "help" or "hint" or "about" or "credits" or "credit" or "info"  as asking for help.
 
 carry out asking for help:
 	carry out the displaying activity;
 	clear the screen;
 	try looking.
 
-Section - Help Tables
+Chapter - Help Tables
 
 table of help contents
 title (text)  	subtable (table name)	description (text)  	used (number)  	bookpage (number)  	localpage (number)  
@@ -142,14 +153,14 @@ title (text)  	subtable (table name)	description (text)  	used (number)  	bookpa
 
 
 	
-Chapter - Actions
+Part - Actions
 
 Understand "read [something]" as reading. Reading is an action applying to one thing, requiring light.
 
 
-Chapter - Kinds
+Part - Kinds
 
-Section - Secret Door
+Chapter - Secret Door
 
 [To print the you can't go message:
 	(- L__M(##Go, 2, 0); -).
@@ -174,9 +185,9 @@ Before doing something when a secret door is the second noun and the second noun
 	say "[text of parser error internal rule response (E)][paragraph break]" instead.
 
 
-Chapter - Characters
+Part - Characters
 
-Section - Jenny
+Chapter - Jenny
 
 Jenny is a female person.  The description of Jenny is "[if jenny is unconscious]Jenny currently lies in a heap, you hope only unconscious.[otherwise]Jenny is a beautiful young woman with a vibrant personallity.  She is slim and athletic which comes from her years of dance.  She has always dreamed of becoming a ballerina and you suspect that with her long slender figure she would make a great one.[end if]".
 
@@ -203,7 +214,7 @@ instead of jenny pushing the rug:
 	try the player pushing the rug;
 	rule succeeds.
 
-Section - Troll
+Chapter - Troll
 
 The troll is an person.  Understand "Marcus/creature/beast/trollish/man" as troll.  The description of the troll is "[if the troll is conscious]A nasty looking man, more of a troll really than the man he once was.  He carries with him a large bloody axe.[otherwise]Even though the troll lies unsconscious, he is still pretty nasty looking and his axe looks pretty deadly.[end if]".
 
@@ -281,7 +292,7 @@ Before taking the axe:
 		say "You reach for the ax, but the troll thinks you're trying to attack.";
 		now the attack-count of the troll is 1 instead.
 	
-Section - Conversation
+Chapter - Conversation
 
 Rule for printing the name of something (called item) when listing suggested topics:
 	 say "[bold type][printed name of the item][roman type]";
@@ -356,7 +367,7 @@ to say rush-out:
 	say "[if location is the attic][paragraph break]She stands up and looks anxious to begin looking for Marcus[end if]"
 
 	
-Chapter - Underlying
+Part - Underlying
 
 Underlying relates various things to one thing.  The verb to underlie (he underlies, they underlie, he underlaid, it is underlaid, he is underlying) implies the underlying relation.  The verb to be under implies the underlying relation.  The verb to be beneath implies the underlying relation.
 
@@ -372,9 +383,9 @@ Understand the commands "shove" and "conceal" and "stick" as "hide".
 Carry out hiding it under:
 	say "You put [the noun] out of sight beneath [the second noun]."
 
-Chapter - Items
+Part - Items
 
-Section  - Coconut
+Chapter  - Coconut
 
 The coconut is an edible thing.  The description of coconut is "The coconut appears to be over-ripe.  In fact, the odor is terrible, it must be centuries over ripe.  The shell is still intact and is very hard."
 
@@ -397,8 +408,14 @@ instead of eating the coconut:
 	say "While you normally enjoy coconut, the smell of this one is too much to overcome."
 
 
-Chapter - Misc
+Part - Misc
 
+Instead of eating or tasting an inedible thing:
+	say "You are not so hungry you would lower yourself to eating [the noun]."
+	
+instead of drinking an inedible thing:
+	say "In an alternative universe, perhaps [the noun] would be something good to drink.....not here."
+	
 Instead of attacking a closed door:
 	say "You bang on [the noun], but it does not open."
 
@@ -443,7 +460,7 @@ Understand "use [something]" as using. Using is an action applying to one thing.
 Understand "use [a door]" as opening. Understand "use [an open door]" as entering.
 
 
-Part - Outdoors Around the House
+Book - Outdoors Around the House
 
 The outdoors is a region.
 
@@ -460,33 +477,45 @@ instead of entering house in outdoors:
 instead of climbing house in outdoors:
 	say "You've always been afraid of heights.  I don't think climbing the house would be a smart idea."
 
-Chapter - Rooms
+Part - Rooms
 
-Section - West of House
+Chapter - West of House
 
 A room called west-house is a room.  "You are standing in an open field west of the white house."
 
 west-house is in the outdoors.  The printed name of west-house is "West of House".
 
+Section - Mailbox
+
 The small mailbox is a container in west-house.  The mailbox is fixed in place, closed, and openable.
 Understand "box" and "mail box" and "mail-box" as the mailbox.  The description of mailbox is "The small mailbox is [if mailbox is open]open[otherwise]closed[end if]."
 
-The pamphlet is in the mailbox.  The description of pamphlet is "It's a copy of a newsletter called 'The Status Line,' whatever that is.  [paragraph break]You scan the newsletter, but none of it really makes sense.  What is [random-infocom-term] anyway?".
+The pamphlet is in the mailbox.  The description of pamphlet is "It's a copy of a newsletter called 'The Status Line,' whatever that is.  [paragraph break]You scan the newsletter, but none of it really makes sense.  What's [random-infocom-term] anyway?".
 Understand "mail" or "letter" or "newsletter" as pamphlet.
 
 To say  random-infocom-term:
-	say "[one of]a fooblitzky[or]a babel fish[or]a grue[or]a zorkmid[or]a feelie[or]an implementor[or]a lebling[or]an invisiclue[then at random]".
+	say "[one of]a fooblitzky[or]a babel fish[or]a grue[or]a zorkmid[or]a feelie[or]an implementor[or]a lebling[or]an invisiclue[in random order]".
+
+Section - Welcome Mat
 	
 A fixed in place supporter called a rubber welcome mat is in west-house.  "A rubber mat saying 'Welcome to' lies by the door.". The description of the mat is "The mat says 'Welcome to' in bold letters and below that are some faded letters that you can hardly make out."
 
 The letters are part of the mat.  The description of letters is "The faded letters are hard to make out, but the first one looks slightly like a 2 or perhaps a 'Z'."
 
-Mat under is a truth state that varies.  Mat under is usually false.
-
 Before taking, pushing, or pulling the rubber welcome mat:
 	say "You reach down to take the mat and notice it's been nailed to the [porch]." instead.
 
+instead of pushing the rubber welcome mat to a direction:
+	try pushing the rubber welcome mat.
+	
+
+	
+
+Section - Porch
+
 The porch is scenery in west-house.  The description of porch is "The wooden porch is falling apart and doesn't look safe."
+
+Section - Front Door
 
 The front door is a door in west-house.  The front door is scenery. The front door is closed.  The front door is unopenable.  The front door is west of the Living Room and east of west-house.  The front door is not apparent.  The description of the front door is "[if the player is in west-house]The door is a heavy oak door....painted white like the rest of the house.[otherwise]The door appears to be nailed shut.  There is some odd gothic graffiti painted on the door.[end if]".
 
@@ -505,14 +534,18 @@ instead of entering house in west-house:
 instead of looking under a door:
 	say "There is no room between the floor and [the noun]."
 	
+Section - Misc 
+	
 instead of listening when location is west-house:
 	say "You hear nothing."
 
 	
-Section - North of House
+Chapter - North of House
 
 A room called north-house is northeast of west-house.  "You are facing the north side of the white house.  There is a window here.".
 north-house is in the outdoors.  The printed name of north-house is "North of House".
+
+Section - Window 
 
 The north-window is scenery in north-house.  The description of north-window is "The window is too dusty to see anything inside."
 Understand "window" as north-window when location is north-house.
@@ -541,10 +574,12 @@ instead of going inside in north-house:
 instead of entering house in north-house:
 	try opening north-window.
 
-Section - South of House
+Chapter - South of House
 
 A room called south-house is southeast of west-house. "You are facing the south side of the white house.  There is a window here.".
 south-house is in the outdoors.  The printed name of south-house is "South of House".
+
+Section - Window 
 
 The south-window is scenery in south-house.  The description of south-window is "The window is too dusty to see anything inside."
 Understand "window" as south-window when location is south-house.
@@ -574,13 +609,15 @@ instead of going north in south-house:
 	try opening south-window.	
 	
 
-Section - Behind House
+Chapter - Behind House
 
 A room called behind-house is northeast of south-house.  behind-house is southeast of north-house.  "You are behind the white house.  In one corner is a window that is [if the entry-window is closed]slightly ajar.  [otherwise]open.".
 
 The printed name of behind-house is "Behind the House".
 
 behind-house is in the outdoors.
+
+Section - Window
 
 The entry-window is a door.  The entry-window is west of behind-house and east of Kitchen.  The entry-window is closed and openable.  The entry-window is scenery.  The description of entry-window is "The window is [if the entry-window is closed]slightly ajar, but not enough the squeeze through. [otherwise]open."  The entry-window is not apparent.  Understand "window" as entry-window when location is behind-house.
 
@@ -614,17 +651,17 @@ before going inside in behind-house:
 	try entering the entry-window instead.
 	
 	
-Section - Misc
+Chapter - Misc
 
 The white house is a backdrop.  The white house is in west-house and north-house and south-house and behind-house.  The description of the white house is "The house is a beautiful colonial house which is painted white.  Clearly this was once a very fancy home."
 
-Part - In the White House
+Book - In the White House
 
 The indoors is a region.
 
-Chapter - Rooms
+Part - Rooms
 
-Section - Living Room
+Chapter - Living Room
 
 The Living Room is a room.  The living room is in the indoors.  The description of living room is "This is the living room.  There is a door to the east leading to [if kitchen has been visited]the kitchen[otherwise]what looks like may be the kitchen[end if].  To the west, there is a wooden door with odd gothic graffiti."
 
@@ -641,7 +678,7 @@ Does the player mean doing something with the trap door when the trap door is no
 To say status of the trap door:
 	say "[if the trap door is open]an open[otherwise]a closed".
 	
-The hooks are a supporter in the living room.    "There are hooks above the glass case attached to the wall.  [if number of things on the hooks is greater than 0]Hanging on the hooks you see [the list of things on the hooks]."  Understand "hook" as hooks.
+The hooks are a supporter in the living room.  "There are hooks above the glass case attached to the wall.  [if number of things on the hooks is greater than 0]Hanging on the hooks you see [a list of things on the hooks]."  Understand "hook" as hooks.
 
 Understand "hang [something preferably held] on [something]" as putting it on.
 
@@ -719,7 +756,7 @@ Instead of taking the trophy case:
 	say "The glass case is fastened securely to the wall." instead.
 
 
-Section - Kitchen
+Chapter - Kitchen
 
 The Kitchen is a room.  The kitchen is east of the Living Room.  The description of the kitchen is "You are in the kitchen of the white house.  A [table] sits in the middle of the room.  A doorway leads to the west and a staircase heads up into darkness.  A [chimney] leads down and to the east is a small window.  A [countertop] lies along the north wall and under the window is a [wash basin]."
 
@@ -770,7 +807,7 @@ before of entering the atticstairs while arrival is happening:
 Before printing a locale paragraph about a supporter (called item): 
 	now every thing on the item is mentioned.
 	
-Section - Attic
+Chapter - Attic
 
 The Attic is a room.  The attic is up from the atticstairs.  The description of attic is "The dimly lit attic is empty except for plenty of cobwebs." 
 The attic is in the indoors.
@@ -781,14 +818,16 @@ Before going nowhere in the attic:
 	say "You can only go back down." instead.
 
 
-Part - Below the White House
+Book - Below the White House
+
+Part - Rooms 
 
 The dungeon is a region.
 
 Before going when in darkness:
 	say "You are too scared of the dark to move anywhere.  You always have this fear that something is going to eat you." instead.
 
-Section - Cellar
+Chapter - Cellar
 
 The Cellar is a dark room.  The cellar is down from the trap door.  The description of cellar is "You are in a dark and damp cellar.  A narrow passageway leads north and to the south you may be able to crawl through a small opening.   To the west is a steep ramp that does not appear climbable.  Leading up is a set of old wooden stairs that end in a [if trap door is closed]closed[otherwise]open[end if] trap door."
 
@@ -810,7 +849,7 @@ Every turn when in darkness:
 		now the player carries the lantern.
 		
 	
-Section - Small Room
+Chapter - Small Room
 
 The Small Room is a dark room.  The Small Room is north of the cellar.  The description of Small Room is "This walls of this small room are covered in deep grooves and old stains.  There is a small cot in one corner.  The only exit is to the south." 
 
@@ -846,7 +885,7 @@ Stains are scenery in the small room.  the description of stains is "The old sta
 Grooves are scenery in the small room.  The description of grooves are "The deep groves scar the walls." 
 
 
-Section - East of Chasm
+Chapter - East of Chasm
 
 Chasm-Room is a dark room.  The printed name of Chasm-Room is "East of Chasm".  The chasm-room is in the dungeon.  The chasm-room is south of cellar.  The description of chasm-room is "You are on the east end of a wide chasm.  Looking down you can't make out the bottom in the dim light.  A narrow passage heads north through which you could crawl and the path you are on continues to the east."
 
@@ -862,7 +901,7 @@ before going west in the chasm-room:
 The chasm is scenery in the chasm-room.  The description of chasm is "Looking down into the chasm, you see that it is very dark and very deep...best not too get too close."	
 
 
-Section - Gallery
+Chapter - Gallery
 
 Gallery is a dark room.  The gallery is east of the chasm-room.  The gallery is in the dungeon.  The description of gallery is "You are in a small room.  Their is a doorway to the north and a pathway heads west."
 
@@ -876,7 +915,7 @@ before looking behind the painting:
 		say " You move the painting to the side slightly, but see nothing behind it."
 		
 		
-Section - Studio
+Chapter - Studio
 
 The Studio is a dark room.  The Studio is in the dungeon.  The studio is north of the gallery. The description of the studio is "You are in an artists studio, one that has not been used for many years, but you can still make out splatters of paint of many colors on the walls, floor and even on the ceiling.  On the north wall is a fireplace with a narrow chimney leading up."
 
@@ -917,9 +956,9 @@ Every turn while the player is carrying the sword:
 
 Understand "glamdring/orcrist" as sword.
 
-Part - Scenes
+Book - Scenes
 
-Chapter - Arrival
+Part - Arrival
 
 Arrival is a scene.  Arrival begins when play begins.
 Arrival ends when noises_heard of the player is 3.
@@ -930,7 +969,7 @@ every turn during arrival:
 			say "[one of]You hear a door close coming from below the house.[or]You spin around quickly when you hear breathing behind you....nothing is there.[or]Light footsteps can be heard coming from above.[then purely at random]";
 			increase the noises_heard of the player by one.
 
-Chapter - Meet Others
+Part - Meet Others
 
 Meet Others is a scene.  Meet Others begins when Arrival ends.   Meet others ends when location is the attic.
 
@@ -940,20 +979,20 @@ When Meet Others begins:
 	say "'Vanessa, you're late. ' she says as your heartbeat pounds in your chest from being startled.  'This house is a great hideout.  We[']ll be able to hang here for days without anyone finding us.', Jenny walks up and gives you a hug. [paragraph break]'I'm headed to the attic.  Come on up if you want.' [paragraph break]'Wait Jenny, who else is here?  I thought I heard noises', you yell, but she is already on her way [if arrival_from_attic is true]back up the way she came.[otherwise]into the kitchen.[end if]";
 	now jenny is in the attic;
 
-Chapter  - Exploration
+Part  - Exploration
 
 Exploration is a scene.  Exploration begins when Meet Others ends.  Exploration ends when the current action is examining the cot.
 When exploration begins:
 	now jenny is shadowing the player.
 
 
-Chapter - The Chase
+Part - The Chase
 
 Chase is a scene.  Chase begins when exploration ends.  Chase ends when the player carries the sword.
 When chase begins:
 	now jenny is shadowing the player.
 
-Chapter - Attack
+Part - Attack
 
 Attack-troll is a scene.  Attack-troll begins when the attack-count of the troll is greater than 0.  Attack-troll ends when the troll is unconscious.
 
@@ -980,7 +1019,7 @@ Every turn during attack-troll:
 To say hit-me:
 	say "[one of]slices your cheek open[or]takes a chunk of skin from your arm[or]nearly removes your right ear[or]slices open your right breast[then at random]."
 	
-Chapter - Finale
+Part - Finale
 
 Finale is a scene.  Finale begins when the player carries the sword.
 
