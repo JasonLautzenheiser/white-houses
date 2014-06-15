@@ -49,7 +49,7 @@ After printing the banner text:
 	say "[get-story-version]".
 
 To say get-story-version:
-	say "Story version: 1.1[line break]".
+	say "Story version: 1.2[line break]".
 	
 	
 [Understand "about" or "credits" or "credit" or "info" as abouting.
