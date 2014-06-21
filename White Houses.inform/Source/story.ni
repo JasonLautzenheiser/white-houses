@@ -17,7 +17,7 @@ Include Property Checking by Emily Short.]
 
 Volume - Game
 
-The release number is 2.
+The release number is 3.
 The story creation year is 2014.
 The story genre is "Fantasy".
 
@@ -49,7 +49,7 @@ After printing the banner text:
 	say "[get-story-version]".
 
 To say get-story-version:
-	say "Story version: 1.2[line break]".
+	say "Story version: 1.3[line break]".
 	
 	
 [Understand "about" or "credits" or "credit" or "info" as abouting.
@@ -98,7 +98,7 @@ Chapter - Help Tables
 
 table of help contents
 title (text)  	subtable (table name)	description (text)  	used (number)  	bookpage (number)  	localpage (number)  
-  	"Credits"	--  	"'[bold type]White Houses © 2014 by Mr. Stamp (Jason Lautzenheiser)[roman type] is a Shufflecomp 2014 entry.  It is very loosly based on the song 'White Houses' by Vanessa Carlton.  I really mean very loosly, in fact little from the song was used for inspiration other than the title and some NPC information.[paragraph break]During the competition, we kept our identities secret, but now that it's over, I can reveal that I'm really Jason Lautzenheiser.  Special thanks to Andrew Shultz, Peter Orme, Carolyn VanEseltine, Hanon Ondricek, and Marshal Tenner Winter for their many transcripts, suggestions, tips and education that they provided during the creation of this game.[paragraph break]I hope you enjoy this short piece as much as I enjoyed creating it."  
+  	"Credits"	--  	"'[bold type]White Houses © 2014 by Mr. Stamp (Jason Lautzenheiser)[roman type] is a Shufflecomp 2014 entry.  It is very loosly based on the song 'White Houses' by Vanessa Carlton.  I really mean very loosly, in fact little from the song was used for inspiration other than the title and some NPC information.[paragraph break]During the competition, we kept our identities secret, but now that it's over, I can reveal that I'm really Jason Lautzenheiser.  Special thanks to Andrew Shultz, Peter Orme, Carolyn VanEseltine, Hanon Ondricek, Todd Gerber and Marshal Tenner Winter for their many transcripts, suggestions, tips and education that they provided during the creation of this game.[paragraph break]I hope you enjoy this short piece as much as I enjoyed creating it."  
   	"What is this game about?"	--	"The term white house brings out many strong memories for many veteran interactive fiction gamers.  This is my attempt at a brief homage to that same white house.[paragraph break]When thinking about what you need to do in this game, look back at the roots of this game and you'll often find the answer to what to do next or it will help to explain something you see.  I tried to include some inside jokes that might be better understood if you look back."  
 	"What game is this based on?"	--	"Well if you are new to the genre or to interactive fiction in general perhaps you don't know.  Do a search on Zork and you'll find the inspiration that I used to create this game."
 	"How do I get into the house?"	table of hinting	"So you want in....well there is a way in, though it may not be that obvious at first."
@@ -303,7 +303,7 @@ endings are a subject.
 Marcus is a subject.
 The white house is a familiar.
 find him is a subject.  Understand "find marcus" as find him.
-dreams are a familiar subject.  Understand "dream" as dreams.
+dreams are a familiar subject.  Understand "dream" and "nightmare" and "nightmares" as dreams.
 
 The ask-suggestions of jenny are {self-suggestion, adventure, house}.
 
@@ -334,7 +334,7 @@ After saying hello to Jenny when the greeting type is explicit for the first tim
 		say "'Jenny, what are we doing out here?'[paragraph break]Jenny looks at you strangely, then smiles and twirls around.  'I thought it would be fun to explore this old place.  Don[']t you just love an adventure?'".
 
 after quizzing jenny about adventure:
-	say "'Jenny, what adventure are you talking about?  You said you had something important to tell me.' [paragraph break]Jenny looks at you oddly, 'There are passages below this house.....I have to find how to get to them......I need your help.'[remove adventure ask suggestion][add passages ask suggestion][add white house ask suggestion]";
+	say "'Jenny, what adventure are you talking about?  You said you had something important to tell me.' [paragraph break]Jenny looks at you oddly, 'There are passages below this house.....I have to find how to get to them......I need your help.'[remove adventure ask suggestion][add passages ask suggestion]";
 	try listing suggested topics.
 	
 after quizzing jenny about the white house:
@@ -351,7 +351,7 @@ after quizzing jenny about passages:
 	try listing suggested topics.
 	
 after quizzing jenny about Marcus:
-	say "[remove Marcus ask suggestion][add dreams ask suggestion]'What are you talking about Jenny?  Do you think he is still alive?'[paragraph break]Jenny pauses, 'I do.  He used to talk about a dream he was having after finding this place.   It was mostly gibberish, but he would awake in a cold sweat, talking about a vast underground kingdom filled with treasure.  The dreams were never quite the same, but they always started in this house.";
+	say "[remove Marcus ask suggestion][add dreams ask suggestion][add find him other suggestion]'What are you talking about Jenny?  Do you think he is still alive?'[paragraph break]Jenny pauses, 'I do.  He used to talk about a dream he was having after finding this place.   It was mostly gibberish, but he would awake in a cold sweat, talking about a vast underground kingdom filled with treasure.  The dreams were never quite the same, but they always started in this house.";
 	try listing suggested topics.
 
 after quizzing jenny about dreams:
@@ -991,6 +991,9 @@ Part - The Chase
 Chase is a scene.  Chase begins when exploration ends.  Chase ends when the player carries the sword.
 When chase begins:
 	now jenny is shadowing the player.
+	
+When chase ends:
+	now jenny is not shadowing the player.
 
 Part - Attack
 
