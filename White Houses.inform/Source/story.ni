@@ -1,5 +1,30 @@
 "White Houses" by Mr Stamp (Jason Lautzenheiser)
 
+Volume - Metadata
+
+Book - Changelog
+
+[
+Release 3
+	- updated list of testers
+	- white house was being added to the list of topics to discuss multiple times.
+	- after jenny is knocked out and the pc went back to look at shirt for first time, jenny would start following you around again.
+	- addition of metadata sections
+	- clean up of some text
+
+Release 2
+	- added credits for beta testers and removal of pseudoname.
+	- cleanup of some code and code organization.
+	- cleanup of responses to eating / drinking inedible things
+	- some strange descriptions of things hanging on hooks in living room.
+	- some text cleanup
+
+Release 1 - Initial release for Shufflecomp
+
+]
+
+Volume - Extensions
+
 Include Conversation Framework by Eric Eve.
 Include Conversation Responses by Eric Eve.
 Include Conversation Suggestions by Eric Eve.
@@ -9,11 +34,10 @@ Include Complex Listing by Emily Short.
 Include Simple Followers by Emily Short.
 Include Menus by Wade Clarke.
 
-
 Volume  - Not for release
 
-[Include Object Response Tests by Juhana Leinonen.
-Include Property Checking by Emily Short.]
+Include Object Response Tests by Juhana Leinonen.
+Include Property Checking by Emily Short.
 
 Volume - Game
 
@@ -22,8 +46,6 @@ The story creation year is 2014.
 The story genre is "Fantasy".
 
 use American dialect.
-
-[Use no deprecated features.]
 
 Book - Setup
 
@@ -51,13 +73,6 @@ After printing the banner text:
 To say get-story-version:
 	say "Story version: 1.3[line break]".
 	
-	
-[Understand "about" or "credits" or "credit" or "info" as abouting.
-Abouting is an action out of world.
-Carry out abouting:
-	say "[bold type]White Houses © 2014 by Mr. Stamp[roman type] is a Shufflecomp 2014 entry.  It is very loosly based on the song 'White Houses' by Vanessa Carlton.  I really mean very loosly, in fact little from the song was used for inspiration other than the title and some NPC information.[paragraph break]During the competition, we are to keep our identities secret, so I can't tell you who I really am.  Afterwards, you'll be able to find out easy enough.  Thanks to the many testers that helped me out, but I'll wait until after the competition to reveal who those were as well.[paragraph break]I hope you enjoy this short piece as much as I enjoyed creating it."
-]
-
 Before listing nondescript items: 
 	if the troll is marked for listing:
 		now the troll is not marked for listing;
@@ -75,7 +90,7 @@ Before listing nondescript items:
 
 Part - Mistakes
 
-Understand "xyzzy" and "PLUGH" as a mistake ("You hear a noise in the distance.  Sounds like someone just called you a fool.").
+Understand "xyzzy" and "PLUGH" and "say xyzzy" and "say plugh"  as a mistake ("You hear a noise in the distance.  Sounds like someone just called you a fool.").
 Understand "win" and "winnage" as a mistake ("Sure you'd like that wouldn't you.").
 Understand "lose" as a mistake ("I can't lose.").
 Understand "chomp"  as a mistake("That's just silly.").
