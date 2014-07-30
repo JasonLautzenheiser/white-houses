@@ -97,6 +97,11 @@ Understand "chomp"  as a mistake("That's just silly.").
 understand "back" and "go back" as a mistake("You vaguely remember some saying about a plow on your back and some kingdom....or something like that.").
 Understand "zork"  as a mistake("Hahaha....you wish.").
 
+Part - Rules
+
+The can't take scenery rule response (A) is "[The noun] can't be taken anywhere."
+Rule for printing a parser error when the latest parser error is I beg your pardon error:
+	say "[one of]What?[or]Come again?[or] Daydreaming again?[in random order]".
 
 Part - Help
 
