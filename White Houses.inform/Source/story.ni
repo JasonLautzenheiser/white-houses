@@ -103,6 +103,8 @@ The can't take scenery rule response (A) is "[The noun] can't be taken anywhere.
 Rule for printing a parser error when the latest parser error is I beg your pardon error:
 	say "[one of]What?[or]Come again?[or] Daydreaming again?[in random order]".
 
+
+
 Part - Help
 
  asking for help is an action out of world applying to nothing.
@@ -409,20 +411,25 @@ Chapter  - Coconut
 
 The coconut is an edible thing.  The description of coconut is "The coconut appears to be over-ripe.  In fact, the odor is terrible, it must be centuries over ripe.  The shell is still intact and is very hard."
 
-
-Instead of smelling the coconut:
-	say "[smell-coconut]";
-
-to say smell-coconut:
-	say "You catch a whiff of the coconut and it smells like a dead corpse that has been laying in the hot sun for too long.  You begin to feel a bit nauseous."
-
 before smelling:
-	if the coconut can be touched by the player:
+	if coconut can be touched by the player or the coconut is contained by something that can be touched by the player:
 		say "[smell-coconut]" instead.
 	
-[instead of smelling while the player carries the coconut:
-	try smelling the coconut.
-]
+before smelling the coconut:
+	say "The coconut smells like a dead corpse that has been laying in the hot sun for too long." instead.
+
+to say smell-coconut:
+	if the coconut is carried by the player:
+		say "All you can smell is the coconut and it smells like a dead corpse that has been laying in the hot sun for too long.  You begin to feel a bit nauseous.";
+	else  if the coconut is contained by something (called the container) that can be touched by the player:
+		if the container is open:
+			say "A rotten smell is coming from the coconut.";
+		otherwise:
+			say "You smell something sickening.";
+	else if the coconut can be touched by the player:
+		say "A rotten smell is coming from the coconut.";
+	
+
 
 instead of eating the coconut:
 	say "While you normally enjoy coconut, the smell of this one is too much to overcome."
