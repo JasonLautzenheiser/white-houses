@@ -39,6 +39,10 @@ Volume  - Not for release
 Include Object Response Tests by Juhana Leinonen.
 Include Property Checking by Emily Short.
 
+Book - Tests
+
+test attic with "ne/se/open window/in/z/z/z/z/z/z/z/u".
+
 Volume - Game
 
 The release number is 3.
@@ -429,8 +433,6 @@ to say smell-coconut:
 	else if the coconut can be touched by the player:
 		say "A rotten smell is coming from the coconut.";
 	
-
-
 instead of eating the coconut:
 	say "While you normally enjoy coconut, the smell of this one is too much to overcome."
 
@@ -457,10 +459,11 @@ A floor is a kind of thing.
 Before putting something on a floor: 
 	try dropping the noun instead.  
 A floor is always scenery. 
+Understand "floor" or "ground" as a floor.
 
-Instead of looking under a floor: 
-	say "Nice idea if you can figure out how." Understand "floor" or "ground" as a floor.
-
+Instead of looking under the generic surroundings: 
+	say "Nice idea if you can figure out how." 
+	
 Some generic surroundings are backdrop. It is everywhere. Understand "walls" or "wall" or "ceiling" or "ground" or "area" or "room" or "here" as the generic surroundings. Understand "floor" or "floorboard" or "floorboards" as the generic surroundings when the location is not floored. 
 
 Before putting something on the generic surroundings: 
@@ -476,6 +479,9 @@ Instead of touching the generic surroundings:
 Instead of touching the generic surroundings when in darkness: 
 	say "You try feeling your way around, but the space you are in is too large to allow you to navigate by touch."
 
+instead of doing anything with the generic surroundings:
+	say "Doing that to [the noun] isn't that useful.".
+	
 Definition: a room is floored if it contains a floor.
 
 Understand "use [a closed openable container]" as opening. Understand "use [an open openable container]" as closing.
@@ -844,6 +850,18 @@ The cobwebs are scenery in the attic.  The description of cobwebs is "You really
 Before going nowhere in the attic:
 	say "You can only go back down." instead.
 
+Section - Coil of Rope
+
+A rope is a kind of thing. Definition: a thing is nonrope if it is not a rope.
+
+A rope called a large coil of rope is in the attic.  "A large coil of rope is in the corner."  The description of the coil of rope is "A long coil of heavy rope.   Attached to one end is a small tag."
+
+The rope-tag is a thing.  It is part of the large coil of rope.  The printed name of rope-tag is "tag".  The description of rope-tag is "The tag has some writing in very small print.  It reads, 'Product of the Quendor Rope Company.  Do not remove under penalty of law.'"
+Understand "tag" as rope-tag.  
+
+before taking the rope-tag:
+	say "You can't remove the tag, it is solidly connected to the rope." instead.
+	
 
 Book - Below the White House
 
