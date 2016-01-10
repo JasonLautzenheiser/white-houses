@@ -33,15 +33,87 @@ Include Exit Lister by Eric Eve.
 Include Complex Listing by Emily Short.
 Include Simple Followers by Emily Short.
 Include Menus by Wade Clarke.
+Include Glulx Text Styles by Daniel Stelzer.
+Include Response Assistant by Aaron Reed.
+
+
+
+
+Volume - New Stuff
+
+Book - Miscellaneous
+
+Section - Beta Testers Comments
+
+First after reading a command (this is the ignore beta-comments rule):
+	if the player's command matches the regular expression "^(\p|\*)":
+		say "(Noted.)";
+		reject the player's command.
+
+Understand "bug" or "bug [text]" as a mistake ("!!! BUG !!![br][note][bracket]Bug flagged.[close bracket][/note]");
+
+Section - Typographical Simplifications	
+
+To say i -- beginning say_i -- running on: (- style underline; -).
+To say /i -- ending say_i -- running on: (- style roman; -).
+To say b -- beginning say_b -- running on: (- style bold; -).
+To say /b -- ending say_b -- running on: (- style roman; -).
+
+To say p -- running on: (- DivideParagraphPoint(); new_line; -).
+To say br -- running on: (- new_line; -).
+To say r -- running on: (- RunParagraphOn(); -).
+
+To say tt -- beginning say_tt -- running on: (- font off; -).
+To say /tt -- ending say_tt -- running on: (- font on; -).
+
+To say note -- beginning say_note -- running on: say using note style.
+To say /note -- ending say_note -- running on: say using normal style.
+
+Section - Pronouns
+
+To say he: say "[they]".
+To say she: say "[they]".
+To say He: say "[They]".
+To say She: say "[They]".
+To say his: say "[their]".
+To say her: say "[their]".
+To say His: say "[Their]".
+To say Her: say "[Their]".
+To say him: say "[them]". [These four are gender-specific because of ambiguity (his(her)/his(hers) and her(his)/her(him)).]
+To say Him: say "[Them]".
+To say hers: say "[theirs]".
+To say Hers: say "[Theirs]".
+To say himself: say "[themselves]".
+To say herself: say "[themselves]".
+To say Himself: say "[Themselves]".
+To say Herself: say "[Themselves]".
+To say he's: say "[they're]".
+To say she's: say "[they're]".
+To say He's: say "[They're]".
+To say She's: say "[They're]".
+[To say honorific:
+	say the honorific for the prior named object.
+To say the/-- honorific for (subject - a thing):
+	if the subject is a person:
+		say "M[if the subject is masculine]r[else if the subject is feminine]s[else]x[end if]. ";]
+
+
+
+Section - Misc Infocom Messages
+
+Rule for printing the description of a dark room:  say "It is pitch black.  You feel something staring at you as if you were its next meal."
+Rule for printing the announcement of darkness: try looking.
+Instead of attacking the player: say "There are things you don't like about yourself, but you aren't really that self destructive."
 
 Volume  - Not for release
 
-Include Object Response Tests by Juhana Leinonen.
+[Include Object Response Tests by Juhana Leinonen.]
 Include Property Checking by Emily Short.
 
 Book - Tests
 
 test attic with "ne/se/open window/in/z/z/z/z/z/z/z/u".
+test basement with "ne/se/open window/in/z/z/z/z/z/z/z/u/d/w/move rug/open trap door/d".
 
 Volume - Game
 
@@ -104,6 +176,8 @@ Understand "zork"  as a mistake("Hahaha....you wish.").
 Part - Rules
 
 The can't take scenery rule response (A) is "[The noun] can't be taken anywhere."
+The block attacking rule response (A) is "I've known strange people, but fighting [a noun]?"
+
 Rule for printing a parser error when the latest parser error is I beg your pardon error:
 	say "[one of]What?[or]Come again?[or] Daydreaming again?[in random order]".
 
@@ -217,6 +291,9 @@ Chapter - Jenny
 
 Jenny is a female person.  The description of Jenny is "[if jenny is unconscious]Jenny currently lies in a heap, you hope only unconscious.[otherwise]Jenny is a beautiful young woman with a vibrant personallity.  She is slim and athletic which comes from her years of dance.  She has always dreamed of becoming a ballerina and you suspect that with her long slender figure she would make a great one.[end if]".
 
+before kissing jenny:
+	say "You give Jenny a peck on the cheek." instead.
+
 before taking the jenny:
 	if jenny is unconscious:
 		say "Jenny is not too large, but there is no way you'll be able to carry her.   You decide to just go for help." instead.
@@ -231,6 +308,8 @@ Understand "herself/Jen" as Jenny.
 
 Persuasion rule for asking jenny to try pulling the rug: persuasion succeeds.
 Persuasion rule for asking jenny to try pushing the rug: persuasion succeeds.
+
+instead of attacking jenny: say "Jenny has been your best friend for years, you wouldn't do anything to hurt her."
 
 instead of jenny pulling the rug:
 	try the player pulling the rug;
@@ -330,6 +409,7 @@ Marcus is a subject.
 The white house is a familiar.
 find him is a subject.  Understand "find marcus" as find him.
 dreams are a familiar subject.  Understand "dream" and "nightmare" and "nightmares" as dreams.
+noises are a familiar subject.  Understand "sounds" as noises.
 
 The ask-suggestions of jenny are {self-suggestion, adventure, house}.
 
@@ -358,6 +438,10 @@ after quizzing jenny about rug:
 After saying hello to Jenny when the greeting type is explicit for the first time:
 	if exploration is happening:
 		say "'Jenny, what are we doing out here?'[paragraph break]Jenny looks at you strangely, then smiles and twirls around.  'I thought it would be fun to explore this old place.  Don[']t you just love an adventure?'".
+
+after quizzing jenny about noises:
+	say "'Jenny, where those noises I heard you?'[paragraph break]Jenny pauses and appears to be listening to something distant.  'I've heard them too.  Marcus and I heard them coming from below the house when we first found this place.";
+	try listing suggested topics.
 
 after quizzing jenny about adventure:
 	say "'Jenny, what adventure are you talking about?  You said you had something important to tell me.' [paragraph break]Jenny looks at you oddly, 'There are passages below this house.....I have to find how to get to them......I need your help.'[remove adventure ask suggestion][add passages ask suggestion]";
@@ -455,35 +539,6 @@ Understand the commands "bang" and "tap" and "rap" as "knock".
 instead of looking under something carried by the player:
 	say "Since you are holding [the noun]  you think you would have noticed if something was underneath it."
 		
-A floor is a kind of thing. 
-Before putting something on a floor: 
-	try dropping the noun instead.  
-A floor is always scenery. 
-Understand "floor" or "ground" as a floor.
-
-Instead of looking under the generic surroundings: 
-	say "Nice idea if you can figure out how." 
-	
-Some generic surroundings are backdrop. It is everywhere. Understand "walls" or "wall" or "ceiling" or "ground" or "area" or "room" or "here" as the generic surroundings. Understand "floor" or "floorboard" or "floorboards" as the generic surroundings when the location is not floored. 
-
-Before putting something on the generic surroundings: 
-	try dropping the noun instead. 
-
-Instead of examining the generic surroundings: 
-	say "You take another look around."; 
-	try looking. 
-	
-Instead of touching the generic surroundings: 
-	say "You encounter nothing extraordinary." 
-
-Instead of touching the generic surroundings when in darkness: 
-	say "You try feeling your way around, but the space you are in is too large to allow you to navigate by touch."
-
-instead of doing anything with the generic surroundings:
-	say "Doing that to [the noun] isn't that useful.".
-	
-Definition: a room is floored if it contains a floor.
-
 Understand "use [a closed openable container]" as opening. Understand "use [an open openable container]" as closing.
 Understand "use [an edible thing]" as eating.
 
