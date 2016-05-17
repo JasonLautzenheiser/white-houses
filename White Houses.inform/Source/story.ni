@@ -440,7 +440,7 @@ After saying hello to Jenny when the greeting type is explicit for the first tim
 		say "'Jenny, what are we doing out here?'[paragraph break]Jenny looks at you strangely, then smiles and twirls around.  'I thought it would be fun to explore this old place.  Don[']t you just love an adventure?'".
 
 after quizzing jenny about noises:
-	say "'Jenny, where those noises I heard you?'[paragraph break]Jenny pauses and appears to be listening to something distant.  'I've heard them too.  Marcus and I heard them coming from below the house when we first found this place.";
+	say "'Jenny, what are those noises I heard?'[paragraph break]Jenny pauses and appears to be listening to something distant.  'I've heard them too.  Marcus and I heard them coming from below the house when we first found this place.";
 	try listing suggested topics.
 
 after quizzing jenny about adventure:
@@ -605,7 +605,7 @@ The porch is scenery in west-house.  The description of porch is "The wooden por
 
 Section - Front Door
 
-The front door is a door in west-house.  The front door is scenery. The front door is closed.  The front door is unopenable.  The front door is west of the Living Room and east of west-house.  The front door is not apparent.  The description of the front door is "[if the player is in west-house]The door is a heavy oak door....painted white like the rest of the house.[otherwise]The door appears to be nailed shut.  There is some odd gothic graffiti painted on the door.[end if]".
+The front door is a door in west-house.  The front door is scenery. The front door is closed.  The front door is unopenable.  The front door is west of the Living Room and east of west-house.  The front door is not apparent.  The description of the front door is "[if the player is in west-house]The door is a heavy oak door painted white like the rest of the house.[otherwise]The door appears to be nailed shut.  There is some odd gothic graffiti painted on the door.[end if]".
 
 Before opening the front door:
 	if location is west-house:
@@ -624,8 +624,8 @@ instead of looking under a door:
 	
 Section - Misc 
 	
-instead of listening when location is west-house:
-	say "You hear nothing."
+instead of listening when location is in outdoors:
+	say "[one of]The sound of silence is deafening.[or]A random bird chirps in the distance, but very distant.[or]The rustling of leaves in the light wind is all you hear.[at random]"
 
 	
 Chapter - North of House
@@ -699,7 +699,7 @@ instead of going north in south-house:
 
 Chapter - Behind House
 
-A room called behind-house is northeast of south-house.  behind-house is southeast of north-house.  "You are behind the white house.  In one corner is a window that is [if the entry-window is closed]slightly ajar.  [otherwise]open.".
+A room called behind-house is northeast of south-house.  behind-house is southeast of north-house.  "You are behind the white house.  In one corner is a window that is [if the entry-window is closed]slightly ajar[otherwise]open[end if]."
 
 The printed name of behind-house is "Behind the House".
 
@@ -1066,7 +1066,7 @@ Arrival ends when noises_heard of the player is 3.
 every turn during arrival:
 	if a random chance of 1 in 3 succeeds:
 		if the player is in the indoors:
-			say "[one of]You hear a door close coming from below the house.[or]You spin around quickly when you hear breathing behind you....nothing is there.[or]Light footsteps can be heard coming from above.[then purely at random]";
+			say "[one of]A door closes somewhere below you.[or]You hear someone breathing behind you.  You spin around quickly, but noone is there. [or]You hear light footsteps above you.[then purely at random]";
 			increase the noises_heard of the player by one.
 
 Part - Meet Others
