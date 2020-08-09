@@ -1,5 +1,30 @@
 "White Houses" by Mr Stamp (Jason Lautzenheiser)
 
+Volume - Metadata
+
+Book - Changelog
+
+[
+Release 3
+	- updated list of testers
+	- white house was being added to the list of topics to discuss multiple times.
+	- after jenny is knocked out and the pc went back to look at shirt for first time, jenny would start following you around again.
+	- addition of metadata sections
+	- clean up of some text
+
+Release 2
+	- added credits for beta testers and removal of pseudoname.
+	- cleanup of some code and code organization.
+	- cleanup of responses to eating / drinking inedible things
+	- some strange descriptions of things hanging on hooks in living room.
+	- some text cleanup
+
+Release 1 - Initial release for Shufflecomp
+
+]
+
+Volume - Extensions
+
 Include Conversation Framework by Eric Eve.
 Include Conversation Responses by Eric Eve.
 Include Conversation Suggestions by Eric Eve.
@@ -8,22 +33,95 @@ Include Exit Lister by Eric Eve.
 Include Complex Listing by Emily Short.
 Include Simple Followers by Emily Short.
 Include Menus by Wade Clarke.
+Include Glulx Text Styles by Daniel Stelzer.
+Include Response Assistant by Aaron Reed.
 
+
+
+
+Volume - New Stuff
+
+Book - Miscellaneous
+
+Section - Beta Testers Comments
+
+First after reading a command (this is the ignore beta-comments rule):
+	if the player's command matches the regular expression "^(\p|\*)":
+		say "(Noted.)";
+		reject the player's command.
+
+Understand "bug" or "bug [text]" as a mistake ("!!! BUG !!![br][note][bracket]Bug flagged.[close bracket][/note]");
+
+Section - Typographical Simplifications	
+
+To say i -- beginning say_i -- running on: (- style underline; -).
+To say /i -- ending say_i -- running on: (- style roman; -).
+To say b -- beginning say_b -- running on: (- style bold; -).
+To say /b -- ending say_b -- running on: (- style roman; -).
+
+To say p -- running on: (- DivideParagraphPoint(); new_line; -).
+To say br -- running on: (- new_line; -).
+To say r -- running on: (- RunParagraphOn(); -).
+
+To say tt -- beginning say_tt -- running on: (- font off; -).
+To say /tt -- ending say_tt -- running on: (- font on; -).
+
+To say note -- beginning say_note -- running on: say using note style.
+To say /note -- ending say_note -- running on: say using normal style.
+
+Section - Pronouns
+
+To say he: say "[they]".
+To say she: say "[they]".
+To say He: say "[They]".
+To say She: say "[They]".
+To say his: say "[their]".
+To say her: say "[their]".
+To say His: say "[Their]".
+To say Her: say "[Their]".
+To say him: say "[them]". [These four are gender-specific because of ambiguity (his(her)/his(hers) and her(his)/her(him)).]
+To say Him: say "[Them]".
+To say hers: say "[theirs]".
+To say Hers: say "[Theirs]".
+To say himself: say "[themselves]".
+To say herself: say "[themselves]".
+To say Himself: say "[Themselves]".
+To say Herself: say "[Themselves]".
+To say he's: say "[they're]".
+To say she's: say "[they're]".
+To say He's: say "[They're]".
+To say She's: say "[They're]".
+[To say honorific:
+	say the honorific for the prior named object.
+To say the/-- honorific for (subject - a thing):
+	if the subject is a person:
+		say "M[if the subject is masculine]r[else if the subject is feminine]s[else]x[end if]. ";]
+
+
+
+Section - Misc Infocom Messages
+
+Rule for printing the description of a dark room:  say "It is pitch black.  You feel something staring at you as if you were its next meal."
+Rule for printing the announcement of darkness: try looking.
+Instead of attacking the player: say "There are things you don't like about yourself, but you aren't really that self destructive."
 
 Volume  - Not for release
 
-[Include Object Response Tests by Juhana Leinonen.
-Include Property Checking by Emily Short.]
+[Include Object Response Tests by Juhana Leinonen.]
+Include Property Checking by Emily Short.
+
+Book - Tests
+
+test attic with "ne/se/open window/in/z/z/z/z/z/z/z/u".
+test basement with "ne/se/open window/in/z/z/z/z/z/z/z/u/d/w/move rug/open trap door/d".
 
 Volume - Game
 
-The release number is 2.
+The release number is 3.
 The story creation year is 2014.
 The story genre is "Fantasy".
 
 use American dialect.
-
-[Use no deprecated features.]
 
 Book - Setup
 
@@ -49,14 +147,12 @@ After printing the banner text:
 	say "[get-story-version]".
 
 To say get-story-version:
-	say "Story version: 1.1[line break]".
-	
+	say "Story version: 1.3[line break]".
 	
 Understand "about" or "credits" or "credit" or "info" as abouting.
 Abouting is an action out of world.
 Carry out abouting:
 	say "[bold type]White Houses © 2014 by Mr. Stamp[roman type] is a Shufflecomp 2014 entry.  It is very loosly based on the song 'White Houses' by Vanessa Carlton.  I really mean very loosly, in fact little from the song was used for inspiration other than the title and some NPC information.[paragraph break]During the competition, we kept our identities secret, but now that it's over, I can reveal that I'm really Jason Lautzenheiser.  Special thanks to Andrew Shultz, Peter Orme, Carolyn VanEseltine, Hanon Ondricek, and Marshal Tenner Winter for their many transcripts, suggestions, tips and education that they provided during the creation of this game.[paragraph break]I hope you enjoy this short piece as much as I enjoyed creating it."
-
 
 Before listing nondescript items: 
 	if the troll is marked for listing:
@@ -75,12 +171,21 @@ Before listing nondescript items:
 
 Part - Mistakes
 
-Understand "xyzzy" and "PLUGH" as a mistake ("You hear a noise in the distance.  Sounds like someone just called you a fool.").
+Understand "xyzzy" and "PLUGH" and "say xyzzy" and "say plugh"  as a mistake ("You hear a noise in the distance.  Sounds like someone just called you a fool.").
 Understand "win" and "winnage" as a mistake ("Sure you'd like that wouldn't you.").
 Understand "lose" as a mistake ("I can't lose.").
 Understand "chomp"  as a mistake("That's just silly.").
 understand "back" and "go back" as a mistake("You vaguely remember some saying about a plow on your back and some kingdom....or something like that.").
 Understand "zork"  as a mistake("Hahaha....you wish.").
+
+Part - Rules
+
+The can't take scenery rule response (A) is "[The noun] can't be taken anywhere."
+The block attacking rule response (A) is "I've known strange people, but fighting [a noun]?"
+
+Rule for printing a parser error when the latest parser error is I beg your pardon error:
+	say "[one of]What?[or]Come again?[or] Daydreaming again?[in random order]".
+
 
 
 Part - Help
@@ -98,7 +203,7 @@ carry out asking for help:
 
 table of help contents
 title (text)  	subtable (table name)	description (text)  	used (number)  	bookpage (number)  	localpage (number)  
-  	"Credits"	--  	"'[bold type]White Houses © 2014 by Mr. Stamp (Jason Lautzenheiser)[roman type] is a Shufflecomp 2014 entry.  It is very loosly based on the song 'White Houses' by Vanessa Carlton.  I really mean very loosly, in fact little from the song was used for inspiration other than the title and some NPC information.[paragraph break]During the competition, we kept our identities secret, but now that it's over, I can reveal that I'm really Jason Lautzenheiser.  Special thanks to Andrew Shultz, Peter Orme, Carolyn VanEseltine, Hanon Ondricek, and Marshal Tenner Winter for their many transcripts, suggestions, tips and education that they provided during the creation of this game.[paragraph break]I hope you enjoy this short piece as much as I enjoyed creating it."  
+  	"Credits"	--  	"'[bold type]White Houses © 2014 by Mr. Stamp (Jason Lautzenheiser)[roman type] is a Shufflecomp 2014 entry.  It is very loosly based on the song 'White Houses' by Vanessa Carlton.  I really mean very loosly, in fact little from the song was used for inspiration other than the title and some NPC information.[paragraph break]During the competition, we kept our identities secret, but now that it's over, I can reveal that I'm really Jason Lautzenheiser.  Special thanks to Andrew Shultz, Peter Orme, Carolyn VanEseltine, Hanon Ondricek, Todd Gerber and Marshal Tenner Winter for their many transcripts, suggestions, tips and education that they provided during the creation of this game.[paragraph break]I hope you enjoy this short piece as much as I enjoyed creating it."  
   	"What is this game about?"	--	"The term white house brings out many strong memories for many veteran interactive fiction gamers.  This is my attempt at a brief homage to that same white house.[paragraph break]When thinking about what you need to do in this game, look back at the roots of this game and you'll often find the answer to what to do next or it will help to explain something you see.  I tried to include some inside jokes that might be better understood if you look back."  
 	"What game is this based on?"	--	"Well if you are new to the genre or to interactive fiction in general perhaps you don't know.  Do a search on Zork and you'll find the inspiration that I used to create this game."
 	"How do I get into the house?"	table of hinting	"So you want in....well there is a way in, though it may not be that obvious at first."
@@ -191,6 +296,9 @@ Chapter - Jenny
 
 Jenny is a female person.  The description of Jenny is "[if jenny is unconscious]Jenny currently lies in a heap, you hope only unconscious.[otherwise]Jenny is a beautiful young woman with a vibrant personallity.  She is slim and athletic which comes from her years of dance.  She has always dreamed of becoming a ballerina and you suspect that with her long slender figure she would make a great one.[end if]".
 
+before kissing jenny:
+	say "You give Jenny a peck on the cheek." instead.
+
 before taking the jenny:
 	if jenny is unconscious:
 		say "Jenny is not too large, but there is no way you'll be able to carry her.   You decide to just go for help." instead.
@@ -205,6 +313,8 @@ Understand "herself/Jen" as Jenny.
 
 Persuasion rule for asking jenny to try pulling the rug: persuasion succeeds.
 Persuasion rule for asking jenny to try pushing the rug: persuasion succeeds.
+
+instead of attacking jenny: say "Jenny has been your best friend for years, you wouldn't do anything to hurt her."
 
 instead of jenny pulling the rug:
 	try the player pulling the rug;
@@ -303,7 +413,8 @@ endings are a subject.
 Marcus is a subject.
 The white house is a familiar.
 find him is a subject.  Understand "find marcus" as find him.
-dreams are a familiar subject.  Understand "dream" as dreams.
+dreams are a familiar subject.  Understand "dream" and "nightmare" and "nightmares" as dreams.
+noises are a familiar subject.  Understand "sounds" as noises.
 
 The ask-suggestions of jenny are {self-suggestion, adventure, house}.
 
@@ -333,8 +444,12 @@ After saying hello to Jenny when the greeting type is explicit for the first tim
 	if exploration is happening:
 		say "'Jenny, what are we doing out here?'[paragraph break]Jenny looks at you strangely, then smiles and twirls around.  'I thought it would be fun to explore this old place.  Don[']t you just love an adventure?'".
 
+after quizzing jenny about noises:
+	say "'Jenny, what are those noises I heard?'[paragraph break]Jenny pauses and appears to be listening to something distant.  'I've heard them too.  Marcus and I heard them coming from below the house when we first found this place.";
+	try listing suggested topics.
+
 after quizzing jenny about adventure:
-	say "'Jenny, what adventure are you talking about?  You said you had something important to tell me.' [paragraph break]Jenny looks at you oddly, 'There are passages below this house.....I have to find how to get to them......I need your help.'[remove adventure ask suggestion][add passages ask suggestion][add white house ask suggestion]";
+	say "'Jenny, what adventure are you talking about?  You said you had something important to tell me.' [paragraph break]Jenny looks at you oddly, 'There are passages below this house.....I have to find how to get to them......I need your help.'[remove adventure ask suggestion][add passages ask suggestion]";
 	try listing suggested topics.
 	
 after quizzing jenny about the white house:
@@ -351,7 +466,7 @@ after quizzing jenny about passages:
 	try listing suggested topics.
 	
 after quizzing jenny about Marcus:
-	say "[remove Marcus ask suggestion][add dreams ask suggestion]'What are you talking about Jenny?  Do you think he is still alive?'[paragraph break]Jenny pauses, 'I do.  He used to talk about a dream he was having after finding this place.   It was mostly gibberish, but he would awake in a cold sweat, talking about a vast underground kingdom filled with treasure.  The dreams were never quite the same, but they always started in this house.";
+	say "[remove Marcus ask suggestion][add dreams ask suggestion][add find him other suggestion]'What are you talking about Jenny?  Do you think he is still alive?'[paragraph break]Jenny pauses, 'I do.  He used to talk about a dream he was having after finding this place.   It was mostly gibberish, but he would awake in a cold sweat, talking about a vast underground kingdom filled with treasure.  The dreams were never quite the same, but they always started in this house.";
 	try listing suggested topics.
 
 after quizzing jenny about dreams:
@@ -389,21 +504,24 @@ Chapter  - Coconut
 
 The coconut is an edible thing.  The description of coconut is "The coconut appears to be over-ripe.  In fact, the odor is terrible, it must be centuries over ripe.  The shell is still intact and is very hard."
 
-
-Instead of smelling the coconut:
-	say "[smell-coconut]";
-
-to say smell-coconut:
-	say "You catch a whiff of the coconut and it smells like a dead corpse that has been laying in the hot sun for too long.  You begin to feel a bit nauseous."
-
 before smelling:
-	if the coconut can be touched by the player:
+	if coconut can be touched by the player or the coconut is contained by something that can be touched by the player:
 		say "[smell-coconut]" instead.
 	
-[instead of smelling while the player carries the coconut:
-	try smelling the coconut.
-]
+before smelling the coconut:
+	say "The coconut smells like a dead corpse that has been laying in the hot sun for too long." instead.
 
+to say smell-coconut:
+	if the coconut is carried by the player:
+		say "All you can smell is the coconut and it smells like a dead corpse that has been laying in the hot sun for too long.  You begin to feel a bit nauseous.";
+	else  if the coconut is contained by something (called the container) that can be touched by the player:
+		if the container is open:
+			say "A rotten smell is coming from the coconut.";
+		otherwise:
+			say "You smell something sickening.";
+	else if the coconut can be touched by the player:
+		say "A rotten smell is coming from the coconut.";
+	
 instead of eating the coconut:
 	say "While you normally enjoy coconut, the smell of this one is too much to overcome."
 
@@ -426,31 +544,6 @@ Understand the commands "bang" and "tap" and "rap" as "knock".
 instead of looking under something carried by the player:
 	say "Since you are holding [the noun]  you think you would have noticed if something was underneath it."
 		
-A floor is a kind of thing. 
-Before putting something on a floor: 
-	try dropping the noun instead.  
-A floor is always scenery. 
-
-Instead of looking under a floor: 
-	say "Nice idea if you can figure out how." Understand "floor" or "ground" as a floor.
-
-Some generic surroundings are backdrop. It is everywhere. Understand "walls" or "wall" or "ceiling" or "ground" or "area" or "room" or "here" as the generic surroundings. Understand "floor" or "floorboard" or "floorboards" as the generic surroundings when the location is not floored. 
-
-Before putting something on the generic surroundings: 
-	try dropping the noun instead. 
-
-Instead of examining the generic surroundings: 
-	say "You take another look around."; 
-	try looking. 
-	
-Instead of touching the generic surroundings: 
-	say "You encounter nothing extraordinary." 
-
-Instead of touching the generic surroundings when in darkness: 
-	say "You try feeling your way around, but the space you are in is too large to allow you to navigate by touch."
-
-Definition: a room is floored if it contains a floor.
-
 Understand "use [a closed openable container]" as opening. Understand "use [an open openable container]" as closing.
 Understand "use [an edible thing]" as eating.
 
@@ -517,7 +610,7 @@ The porch is scenery in west-house.  The description of porch is "The wooden por
 
 Section - Front Door
 
-The front door is a door in west-house.  The front door is scenery. The front door is closed.  The front door is unopenable.  The front door is west of the Living Room and east of west-house.  The front door is not apparent.  The description of the front door is "[if the player is in west-house]The door is a heavy oak door....painted white like the rest of the house.[otherwise]The door appears to be nailed shut.  There is some odd gothic graffiti painted on the door.[end if]".
+The front door is a door in west-house.  The front door is scenery. The front door is closed.  The front door is unopenable.  The front door is west of the Living Room and east of west-house.  The front door is not apparent.  The description of the front door is "[if the player is in west-house]The door is a heavy oak door painted white like the rest of the house.[otherwise]The door appears to be nailed shut.  There is some odd gothic graffiti painted on the door.[end if]".
 
 Before opening the front door:
 	if location is west-house:
@@ -536,8 +629,8 @@ instead of looking under a door:
 	
 Section - Misc 
 	
-instead of listening when location is west-house:
-	say "You hear nothing."
+instead of listening when location is in outdoors:
+	say "[one of]The sound of silence is deafening.[or]A random bird chirps in the distance, but very distant.[or]The rustling of leaves in the light wind is all you hear.[at random]"
 
 	
 Chapter - North of House
@@ -611,7 +704,7 @@ instead of going north in south-house:
 
 Chapter - Behind House
 
-A room called behind-house is northeast of south-house.  behind-house is southeast of north-house.  "You are behind the white house.  In one corner is a window that is [if the entry-window is closed]slightly ajar.  [otherwise]open.".
+A room called behind-house is northeast of south-house.  behind-house is southeast of north-house.  "You are behind the white house.  In one corner is a window that is [if the entry-window is closed]slightly ajar[otherwise]open[end if]."
 
 The printed name of behind-house is "Behind the House".
 
@@ -817,6 +910,18 @@ The cobwebs are scenery in the attic.  The description of cobwebs is "You really
 Before going nowhere in the attic:
 	say "You can only go back down." instead.
 
+Section - Coil of Rope
+
+A rope is a kind of thing. Definition: a thing is nonrope if it is not a rope.
+
+A rope called a large coil of rope is in the attic.  "A large coil of rope is in the corner."  The description of the coil of rope is "A long coil of heavy rope.   Attached to one end is a small tag."
+
+The rope-tag is a thing.  It is part of the large coil of rope.  The printed name of rope-tag is "tag".  The description of rope-tag is "The tag has some writing in very small print.  It reads, 'Product of the Quendor Rope Company.  Do not remove under penalty of law.'"
+Understand "tag" as rope-tag.  
+
+before taking the rope-tag:
+	say "You can't remove the tag, it is solidly connected to the rope." instead.
+	
 
 Book - Below the White House
 
@@ -966,7 +1071,7 @@ Arrival ends when noises_heard of the player is 3.
 every turn during arrival:
 	if a random chance of 1 in 3 succeeds:
 		if the player is in the indoors:
-			say "[one of]You hear a door close coming from below the house.[or]You spin around quickly when you hear breathing behind you....nothing is there.[or]Light footsteps can be heard coming from above.[then purely at random]";
+			say "[one of]A door closes somewhere below you.[or]You hear someone breathing behind you.  You spin around quickly, but noone is there. [or]You hear light footsteps above you.[then purely at random]";
 			increase the noises_heard of the player by one.
 
 Part - Meet Others
@@ -991,6 +1096,9 @@ Part - The Chase
 Chase is a scene.  Chase begins when exploration ends.  Chase ends when the player carries the sword.
 When chase begins:
 	now jenny is shadowing the player.
+	
+When chase ends:
+	now jenny is not shadowing the player.
 
 Part - Attack
 
