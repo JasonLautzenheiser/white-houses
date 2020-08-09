@@ -149,6 +149,11 @@ After printing the banner text:
 To say get-story-version:
 	say "Story version: 1.3[line break]".
 	
+Understand "about" or "credits" or "credit" or "info" as abouting.
+Abouting is an action out of world.
+Carry out abouting:
+	say "[bold type]White Houses © 2014 by Mr. Stamp[roman type] is a Shufflecomp 2014 entry.  It is very loosly based on the song 'White Houses' by Vanessa Carlton.  I really mean very loosly, in fact little from the song was used for inspiration other than the title and some NPC information.[paragraph break]During the competition, we kept our identities secret, but now that it's over, I can reveal that I'm really Jason Lautzenheiser.  Special thanks to Andrew Shultz, Peter Orme, Carolyn VanEseltine, Hanon Ondricek, and Marshal Tenner Winter for their many transcripts, suggestions, tips and education that they provided during the creation of this game.[paragraph break]I hope you enjoy this short piece as much as I enjoyed creating it."
+
 Before listing nondescript items: 
 	if the troll is marked for listing:
 		now the troll is not marked for listing;
@@ -187,14 +192,14 @@ Part - Help
 
  asking for help is an action out of world applying to nothing.
 
-Understand "help" or "hint" or "about" or "credits" or "credit" or "info"  as asking for help.
+[Understand "help" or "hint" or "about" or "credits" or "credit" or "info"  as asking for help.]
 
 carry out asking for help:
 	carry out the displaying activity;
 	clear the screen;
 	try looking.
 
-Chapter - Help Tables
+[Chapter - Help Tables
 
 table of help contents
 title (text)  	subtable (table name)	description (text)  	used (number)  	bookpage (number)  	localpage (number)  
@@ -248,7 +253,7 @@ title (text)  	subtable (table name)	description (text)  	used (number)  	bookpa
 	"hint"	--	"Can you find the other names of the sword?  Think of it's heritage in Tolkien and how Zork paid homage to Tolkien."
 	"hint"	--	"Did you find the Coconut of Quendor?"
 	"hint"	--	"Examine the painting, but first pay attention to room description.  This is an inside joke from Zork 1."
-	"hint"	--	"Count the paint splatters in the studio.  Another Zork inside joke."
+	"hint"	--	"Count the paint splatters in the studio.  Another Zork inside joke."]
 
 
 
